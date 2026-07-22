@@ -790,6 +790,9 @@ nav {
 .footer-col-right .footer-links-list {
   align-items: flex-end;
 }
+.footer-nav-col {
+  transform: translateX(20px);
+}
 
 .footer-bottom {
   display: flex;
@@ -932,5 +935,8 @@ nav {
   }
   .footer-col-right .footer-links-list {
     align-items: flex-start;
+  }
+  .footer-nav-col {
+    transform: none;
   }
 }
