@@ -40,11 +40,22 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 40px; height: 60px;
+    height: 60px;
     background: rgba(10,10,10,0.97);
     border-bottom: 1px solid var(--panel-border);
     backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .logo {
@@ -86,14 +97,24 @@
     padding-top: 60px;
     overflow: hidden;
     background: var(--bg);
+    display: flex;
+    justify-content: center;
   }
 
-  /* Terminal grid: starts 25% from left, fills to right edge and full height — no blank space */
+  .hero-container {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    height: calc(100vh - 60px);
+    min-height: 600px;
+  }
+
+  /* Terminal grid: 2 columns */
   .terminal-grid {
     position: absolute;
-    top: 60px; right: 0; bottom: 0; left: 25%;
+    top: 0; right: 0; bottom: 0; left: 320px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(4, 1fr);
     gap: 1px;
     background: var(--panel-border);
@@ -102,12 +123,12 @@
     opacity: 0.85;
   }
 
-  /* Soft left-edge fade: from solid bg → transparent, covering the first ~18% of the grid */
+  /* Soft left-edge fade */
   .terminal-fade {
     position: absolute;
-    top: 60px; bottom: 0;
-    left: 25%;
-    width: 20%;
+    top: 0; bottom: 0;
+    left: 320px;
+    width: 100px;
     background: linear-gradient(90deg,
       rgba(10,10,10,1)   0%,
       rgba(10,10,10,0.85) 40%,
@@ -117,11 +138,11 @@
     z-index: 3;
   }
 
-  /* Solid bg left of grid — no gap, no blank */
+  /* Solid bg left of grid */
   .hero-bg-left {
     position: absolute;
-    top: 60px; left: 0; bottom: 0;
-    width: 25%;
+    top: 0; left: 0; bottom: 0;
+    width: 320px;
     background: var(--bg);
     z-index: 2;
   }
@@ -129,8 +150,8 @@
   /* Hero left - Profile card styling */
   .hero-left {
     position: absolute;
-    top: 60px; left: 0; bottom: 0;
-    width: 25%;
+    top: 0; left: 0; bottom: 0;
+    width: 320px;
     z-index: 10;
     display: flex;
     flex-direction: column;
@@ -861,124 +882,112 @@
 <body>
 
 <nav>
-  <div class="logo">
-    Portfolio
-  </div>
-  <ul class="nav-links">
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="mailto:iaruneswar@gmail.com">Contact</a></li>
-  </ul>
-  <div class="nav-actions">
-    <a href="mailto:iaruneswar@gmail.com" class="btn-mail">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg>
-      MAIL
-    </a>
+  <div class="nav-container">
+    <div class="logo">
+      Portfolio
+    </div>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="mailto:iaruneswar@gmail.com">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="mailto:iaruneswar@gmail.com" class="btn-mail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        MAIL
+      </a>
+    </div>
   </div>
 </nav>
 
 <section class="hero">
-  <!-- solid bg left of grid -->
-  <div class="hero-bg-left"></div>
-  <!-- soft fade at left edge of grid -->
-  <div class="terminal-fade"></div>
+  <div class="hero-container">
+    <!-- solid bg left of grid -->
+    <div class="hero-bg-left"></div>
+    <!-- soft fade at left edge of grid -->
+    <div class="terminal-fade"></div>
 
-  <!-- Profile Card overlaid on top -->
-  <div class="hero-left">
-    <div class="profile-container">
-      <div class="avatar-wrapper">
-        <img class="avatar" src="Profile.png" alt="Arun Eswaran" />
+    <!-- Profile Card overlaid on top -->
+    <div class="hero-left">
+      <div class="profile-container">
+        <div class="avatar-wrapper">
+          <img class="avatar" src="Profile.png" alt="Arun Eswaran" />
+        </div>
+        
+        <h2 class="profile-name">Arun Eswaran</h2>
+        <div class="profile-role">UI/UX Designer & Developer</div>
+        
+        <hr class="profile-divider" />
+        
+        <p class="profile-bio">
+          Crafting performant web architectures and immersive interactive interfaces. Focused on clean code and intuitive design.
+        </p>
+        
+        <div class="profile-links">
+          <a href="https://github.com/iaruneswaran" target="_blank" class="profile-btn">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/iaruneswaran/" target="_blank" class="profile-btn">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://www.behance.net/aruneswaran" target="_blank" class="profile-btn">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8.228 15.011c0 .412-.056.802-.168 1.17a2.912 2.912 0 0 1-1.254 1.637 4.706 4.706 0 0 1-2.222.484H0V5.748h4.51c1.233 0 2.17.29 2.81 0.871A2.784 2.784 0 0 1 8.3 8.784c0 .762-.224 1.378-.672 1.849a2.766 2.766 0 0 1 1.042 1.15c.294.629.44 1.341.44 2.136l-.082 1.092zm-2.483-6.268c0-.462-.132-.8-.396-1.014s-.681-.322-1.251-.322H2.333v2.853h1.766c.553 0 .963-.122 1.231-.366s.402-.544.402-.9-.087-.251-.087-.251zm.344 6.136c0-.528-.152-.916-.456-1.164s-.787-.373-1.448-.373H2.333v3.298h1.849c.677 0 1.173-.139 1.488-.416s.472-.693.472-1.246l-.004-.099zm14.341-2.906h-5.992c.085 1.116.482 1.954 1.192 2.513s1.611.839 2.701.839c1.602 0 2.705-.629 3.308-1.888h2.091c-.419 1.189-1.213 2.13-2.381 2.822a6.974 6.974 0 0 1-3.69 1.037c-2.261 0-3.992-.663-5.19-1.99s-1.797-3.136-1.797-5.426c0-2.247.599-4.008 1.797-5.283s2.833-1.912 4.908-1.912c2.181 0 3.864.671 5.05 2.013s1.779 3.232 1.779 5.67v.605zm-2.074-1.637c-.042-.998-.382-1.737-1.02-2.217s-1.434-.72-2.387-.72c-.991 0-1.795.271-2.41 0.812s-.975 1.309-1.08 2.125h6.897zM11.758 7.375h5.92v1.272h-5.92V7.375z"/>
+            </svg>
+            Behance
+          </a>
+        </div>
       </div>
-      
-      <h2 class="profile-name">Arun Eswaran</h2>
-      <div class="profile-role">UI/UX Designer & Developer</div>
-      
-      <hr class="profile-divider" />
-      
-      <p class="profile-bio">
-        Crafting performant web architectures and immersive interactive interfaces. Focused on clean code and intuitive design.
-      </p>
-      
-      <div class="profile-links">
-        <a href="https://github.com/iaruneswaran" target="_blank" class="profile-btn">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/iaruneswaran/" target="_blank" class="profile-btn">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-          </svg>
-          LinkedIn
-        </a>
-        <a href="https://www.behance.net/aruneswaran" target="_blank" class="profile-btn">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8.228 15.011c0 .412-.056.802-.168 1.17a2.912 2.912 0 0 1-1.254 1.637 4.706 4.706 0 0 1-2.222.484H0V5.748h4.51c1.233 0 2.17.29 2.81 0.871A2.784 2.784 0 0 1 8.3 8.784c0 .762-.224 1.378-.672 1.849a2.766 2.766 0 0 1 1.042 1.15c.294.629.44 1.341.44 2.136l-.082 1.092zm-2.483-6.268c0-.462-.132-.8-.396-1.014s-.681-.322-1.251-.322H2.333v2.853h1.766c.553 0 .963-.122 1.231-.366s.402-.544.402-.9-.087-.251-.087-.251zm.344 6.136c0-.528-.152-.916-.456-1.164s-.787-.373-1.448-.373H2.333v3.298h1.849c.677 0 1.173-.139 1.488-.416s.472-.693.472-1.246l-.004-.099zm14.341-2.906h-5.992c.085 1.116.482 1.954 1.192 2.513s1.611.839 2.701.839c1.602 0 2.705-.629 3.308-1.888h2.091c-.419 1.189-1.213 2.13-2.381 2.822a6.974 6.974 0 0 1-3.69 1.037c-2.261 0-3.992-.663-5.19-1.99s-1.797-3.136-1.797-5.426c0-2.247.599-4.008 1.797-5.283s2.833-1.912 4.908-1.912c2.181 0 3.864.671 5.05 2.013s1.779 3.232 1.779 5.67v.605zm-2.074-1.637c-.042-.998-.382-1.737-1.02-2.217s-1.434-.72-2.387-.72c-.991 0-1.795.271-2.41 0.812s-.975 1.309-1.08 2.125h6.897zM11.758 7.375h5.92v1.272h-5.92V7.375z"/>
-          </svg>
-          Behance
-        </a>
+    </div>
+
+    <!-- terminal grid: 2 cols × 4 rows -->
+    <div class="terminal-grid">
+      <div class="t-panel" id="p1">
+        <div class="scan-sweep"></div>
+        <div class="t-panel-header"><span class="t-panel-title">AGENT-01 // REFACTOR</span><span class="dot dot-active"></span></div>
+        <div id="p1-lines"></div>
       </div>
-    </div>
-  </div>
+      <div class="t-panel" id="p2">
+        <div class="t-panel-header"><span class="t-panel-title">AGENT-02 // MIGRATE</span><span class="dot dot-active"></span></div>
+        <div id="p2-lines"></div>
+      </div>
 
-  <!-- terminal grid: starts at 25%, 3 cols × 4 rows, fills to bottom-right -->
-  <div class="terminal-grid">
-    <div class="t-panel" id="p1">
-      <div class="scan-sweep"></div>
-      <div class="t-panel-header"><span class="t-panel-title">AGENT-01 // REFACTOR</span><span class="dot dot-active"></span></div>
-      <div id="p1-lines"></div>
-    </div>
-    <div class="t-panel" id="p2">
-      <div class="t-panel-header"><span class="t-panel-title">AGENT-02 // MIGRATE</span><span class="dot dot-active"></span></div>
-      <div id="p2-lines"></div>
-    </div>
-    <div class="t-panel" id="p3">
-      <div class="t-panel-header"><span class="t-panel-title">AGENT-03 // TEST-GEN</span><span class="dot dot-active"></span></div>
-      <div id="p3-lines"></div>
-    </div>
+      <div class="t-panel" id="p4">
+        <div class="t-panel-header"><span class="t-panel-title">AGENT-04 // DEPLOY</span><span class="dot dot-active"></span></div>
+        <div id="p4-lines"></div>
+      </div>
+      <div class="t-panel" id="p5">
+        <div class="scan-sweep"></div>
+        <div class="t-panel-header"><span class="t-panel-title">SYSTEM // STATUS</span><span class="dot dot-active"></span></div>
+        <div id="p5-lines"></div>
+      </div>
 
-    <div class="t-panel" id="p4">
-      <div class="t-panel-header"><span class="t-panel-title">AGENT-04 // DEPLOY</span><span class="dot dot-active"></span></div>
-      <div id="p4-lines"></div>
-    </div>
-    <div class="t-panel" id="p5">
-      <div class="scan-sweep"></div>
-      <div class="t-panel-header"><span class="t-panel-title">SYSTEM // STATUS</span><span class="dot dot-active"></span></div>
-      <div id="p5-lines"></div>
-    </div>
-    <div class="t-panel" id="p6">
-      <div class="t-panel-header"><span class="t-panel-title">AGENT-05 // REVIEW</span><span class="dot dot-warn"></span></div>
-      <div id="p6-lines"></div>
-    </div>
+      <div class="t-panel" id="p7">
+        <div class="t-panel-header"><span class="t-panel-title">AGENT-07 // PERF</span><span class="dot dot-active"></span></div>
+        <div id="p7-lines"></div>
+      </div>
+      <div class="t-panel" id="p8">
+        <div class="t-panel-header"><span class="t-panel-title">SYSTEM // EVENT LOG</span><span class="dot dot-active"></span></div>
+        <div id="p8-lines"></div>
+      </div>
 
-    <div class="t-panel" id="p7">
-      <div class="t-panel-header"><span class="t-panel-title">AGENT-07 // PERF</span><span class="dot dot-active"></span></div>
-      <div id="p7-lines"></div>
-    </div>
-    <div class="t-panel" id="p8">
-      <div class="t-panel-header"><span class="t-panel-title">SYSTEM // EVENT LOG</span><span class="dot dot-active"></span></div>
-      <div id="p8-lines"></div>
-    </div>
-    <div class="t-panel" id="p9">
-      <div class="t-panel-header"><span class="t-panel-title">SYSTEM // TASK QUEUE</span><span class="dot dot-active"></span></div>
-      <div id="p9-lines"></div>
-    </div>
-
-    <div class="t-panel" id="p10">
-      <div class="t-panel-header"><span class="t-panel-title">AGENT-11 // ROLLBACK</span><span class="dot dot-err"></span></div>
-      <div id="p10-lines"></div>
-    </div>
-    <div class="t-panel" id="p11">
-      <div class="t-panel-header"><span class="t-panel-title">AGENT-06 // DOCS</span><span class="dot dot-active"></span></div>
-      <div id="p11-lines"></div>
-    </div>
-    <div class="t-panel" id="p12">
-      <div class="t-panel-header"><span class="t-panel-title">SYSTEM // NETWORK</span><span class="dot dot-active"></span></div>
-      <div id="p12-lines"></div>
+      <div class="t-panel" id="p10">
+        <div class="t-panel-header"><span class="t-panel-title">AGENT-11 // ROLLBACK</span><span class="dot dot-err"></span></div>
+        <div id="p10-lines"></div>
+      </div>
+      <div class="t-panel" id="p11">
+        <div class="t-panel-header"><span class="t-panel-title">AGENT-06 // DOCS</span><span class="dot dot-active"></span></div>
+        <div id="p11-lines"></div>
+      </div>
     </div>
   </div>
 </section>
