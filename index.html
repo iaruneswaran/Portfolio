@@ -407,176 +407,163 @@
     }
   }
 
-  /* ── PROJECTS SECTION ─────────────────────────────── */
+  /* ── PROJECTS SECTION ────────────────────────── */
   .projects-section {
-    padding: 100px 60px;
-    background: #0A0A0A;
-    border-top: 1px solid var(--panel-border);
     position: relative;
-    z-index: 5;
+    background: var(--bg);
+    padding: 100px 40px;
+    border-top: 1px solid var(--panel-border);
+    z-index: 10;
+  }
+
+  .projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .section-header {
-    margin-bottom: 60px;
-    max-width: 600px;
+    margin-bottom: 48px;
   }
 
-  .section-tag {
-    color: var(--orange);
+  .section-badge {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 2px;
+    color: var(--orange);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-bottom: 12px;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .section-title {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 800;
     color: white;
     letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--text-primary);
+    max-width: 540px;
+    line-height: 1.6;
   }
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 
   .project-card {
-    background: #0D0D0D;
+    background: var(--panel-bg);
     border: 1px solid var(--panel-border);
-    border-radius: 8px;
-    padding: 30px;
+    border-radius: 6px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 380px;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .project-card:hover {
-    border-color: var(--yellow);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(200, 168, 75, 0.05);
+    transform: translateY(-3px);
+    border-color: rgba(255, 107, 0, 0.4);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   }
 
-  .project-main {
+  .project-card-header {
     display: flex;
-    flex-direction: column;
-  }
-
-  .project-header {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--panel-border);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .project-id {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+  }
+
+  .project-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+
+  .project-desc {
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-bottom: 24px;
   }
 
-  .project-icon {
-    color: var(--yellow);
-    width: 24px;
-    height: 24px;
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-bright);
+    background: #141414;
+    border: 1px solid var(--panel-border);
+    padding: 4px 10px;
+    border-radius: 3px;
   }
 
-  .project-links {
+  .project-actions {
     display: flex;
+    align-items: center;
     gap: 16px;
   }
 
   .project-link {
-    color: var(--text-bright);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
     text-decoration: none;
-    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
   }
 
   .project-link:hover {
-    color: white;
+    color: var(--orange);
   }
 
-  .project-link svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .project-title {
-    font-family: 'Mustica Pro', 'Inter', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 12px;
-    letter-spacing: -0.5px;
-  }
-
-  .project-desc {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-primary);
-    margin-bottom: 24px;
-  }
-
-  .project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-
-  .tech-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+  .project-link-secondary {
     color: var(--text-secondary);
-    background: #141414;
-    padding: 4px 10px;
-    border-radius: 4px;
-    border: 1px solid var(--panel-border);
   }
-
-  .project-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+  .project-link-secondary:hover {
     color: white;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    border: 1px solid var(--panel-border);
-    padding: 10px 20px;
-    border-radius: 4px;
-    background: #0D0D0D;
-    transition: all 0.2s;
-    width: fit-content;
-  }
-
-  .project-btn:hover {
-    background: white;
-    color: black;
-    border-color: white;
   }
 
   @media (max-width: 900px) {
     .projects-section {
-      padding: 80px 24px;
+      padding: 60px 20px;
     }
-
-    .projects-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-  }
-
-  @media (max-width: 600px) {
     .projects-grid {
       grid-template-columns: 1fr;
     }
-    
-    .section-title {
-      font-size: 32px;
-    }
-  }
+  html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
@@ -704,210 +691,128 @@
   </div>
 </section>
 
-<section class="projects-section" id="projects">
-  <div class="section-header">
-    <span class="section-tag">// SELECTED WORK</span>
-    <h2 class="section-title">Projects</h2>
-  </div>
-  
-  <div class="projects-grid">
-    <!-- Project 1 -->
-    <div class="project-card">
-      <div class="project-main">
-        <div class="project-header">
-          <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-          </svg>
-          <div class="project-links">
-            <a href="https://github.com/iaruneswaran/Portfolio" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <h3 class="project-title">CLI Terminal Portfolio</h3>
-        <p class="project-desc">
-          A developer landing page featuring dynamic typewriter console animations, live network logging, and custom interactive profiles.
-        </p>
-        <div class="project-tech">
-          <span class="tech-tag">HTML</span>
-          <span class="tech-tag">CSS</span>
-          <span class="tech-tag">JavaScript</span>
-        </div>
-      </div>
-      <a href="https://github.com/iaruneswaran/Portfolio" target="_blank" class="project-btn">
-        View Project ↗
-      </a>
+<!-- ── PROJECTS SECTION ────────────────────────── -->
+<section id="projects" class="projects-section">
+  <div class="projects-container">
+    <div class="section-header">
+      <div class="section-badge"><span class="dot dot-active"></span> 01 // SELECTED WORKS</div>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">
+        Architecting robust full-stack applications, intuitive UI/UX systems, and high-performance developer tools.
+      </p>
     </div>
 
-    <!-- Project 2 -->
-    <div class="project-card">
-      <div class="project-main">
-        <div class="project-header">
-          <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-          </svg>
-          <div class="project-links">
-            <a href="https://github.com/iaruneswaran" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-              </svg>
-            </a>
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div>
+          <div class="project-card-header">
+            <span class="project-id">PRJ-01 // HEALTHCARE</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">Amrit Health Assistant</h3>
+          <p class="project-desc">
+            Symptom-based medical specialty matching & doctor booking engine. Features AI triage algorithms, real-time availability filters, and automated appointment scheduling flows.
+          </p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Tailwind</span>
+            <span class="tag">AI Triage</span>
           </div>
         </div>
-        <h3 class="project-title">Amrit Health Club</h3>
-        <p class="project-desc">
-          An interactive health application with patient intake flows, booking management systems, and smart AI assistant integrations.
-        </p>
-        <div class="project-tech">
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Vite</span>
-          <span class="tech-tag">CSS</span>
-          <span class="tech-tag">JavaScript</span>
+        <div class="project-actions">
+          <a href="https://github.com/iaruneswaran" target="_blank" class="project-link">
+            GitHub <span class="btn-arrow">↗</span>
+          </a>
+          <a href="#" class="project-link project-link-secondary">
+            Live Preview <span class="btn-arrow">↗</span>
+          </a>
         </div>
       </div>
-      <a href="https://github.com/iaruneswaran" target="_blank" class="project-btn">
-        View Project ↗
-      </a>
-    </div>
 
-    <!-- Project 3 -->
-    <div class="project-card">
-      <div class="project-main">
-        <div class="project-header">
-          <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-          </svg>
-          <div class="project-links">
-            <a href="https://github.com/iaruneswaran" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-              </svg>
-            </a>
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div>
+          <div class="project-card-header">
+            <span class="project-id">PRJ-02 // SYSTEM PLATFORM</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">Blackbox Agent Workspace</h3>
+          <p class="project-desc">
+            Multi-agent autonomous execution dashboard. Displays real-time streaming CLI outputs, telemetry metrics, and automatic code refactoring pipelines.
+          </p>
+          <div class="project-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">CSS Architecture</span>
+            <span class="tag">WebSockets</span>
+            <span class="tag">CI/CD</span>
           </div>
         </div>
-        <h3 class="project-title">DevFlow CLI Automation</h3>
-        <p class="project-desc">
-          A Node-based developer tooling suite automating environment setups, staging configurations, and multi-service image pushing.
-        </p>
-        <div class="project-tech">
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">Docker</span>
-          <span class="tech-tag">CLI</span>
+        <div class="project-actions">
+          <a href="https://github.com/iaruneswaran" target="_blank" class="project-link">
+            GitHub <span class="btn-arrow">↗</span>
+          </a>
+          <a href="#" class="project-link project-link-secondary">
+            Live Preview <span class="btn-arrow">↗</span>
+          </a>
         </div>
       </div>
-      <a href="https://github.com/iaruneswaran" target="_blank" class="project-btn">
-        View Project ↗
-      </a>
-    </div>
-  </div>
-</section>
 
-<section class="projects-section" id="design-projects" style="border-top: 1px solid var(--panel-border);">
-  <div class="section-header">
-    <span class="section-tag">// CASE STUDIES & UI/UX</span>
-    <h2 class="section-title">Design Projects</h2>
-  </div>
-  
-  <div class="projects-grid">
-    <!-- Design 1 -->
-    <div class="project-card">
-      <div class="project-main">
-        <div class="project-header">
-          <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"/>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-          <div class="project-links">
-            <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div>
+          <div class="project-card-header">
+            <span class="project-id">PRJ-03 // UI/UX DESIGN</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">Cybernetic Portfolio System</h3>
+          <p class="project-desc">
+            State-of-the-art personal developer portal. Features glassmorphism UI, terminal grid simulation, responsive layout math, and continuous deployment.
+          </p>
+          <div class="project-tags">
+            <span class="tag">UI/UX Design</span>
+            <span class="tag">HTML5/CSS3</span>
+            <span class="tag">Git Automation</span>
           </div>
         </div>
-        <h3 class="project-title">Amrit Health Mobile Dashboard</h3>
-        <p class="project-desc">
-          User interface design and custom telemetry graphs for real-time vitals monitoring. Focused on clean layouts and responsive charts.
-        </p>
-        <div class="project-tech">
-          <span class="tech-tag">Figma</span>
-          <span class="tech-tag">UI/UX</span>
-          <span class="tech-tag">Design System</span>
+        <div class="project-actions">
+          <a href="https://github.com/iaruneswaran/Portfolio" target="_blank" class="project-link">
+            GitHub <span class="btn-arrow">↗</span>
+          </a>
+          <a href="#" class="project-link project-link-secondary">
+            Live Preview <span class="btn-arrow">↗</span>
+          </a>
         </div>
       </div>
-      <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-btn">
-        View Case Study ↗
-      </a>
-    </div>
 
-    <!-- Design 2 -->
-    <div class="project-card">
-      <div class="project-main">
-        <div class="project-header">
-          <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"/>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-          <div class="project-links">
-            <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div>
+          <div class="project-card-header">
+            <span class="project-id">PRJ-04 // DASHBOARD</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">Real-Time Telemetry Monitor</h3>
+          <p class="project-desc">
+            Cloud microservice telemetry visualizer. Monitors cluster memory, latency p95 bounds, and automated rollback health checks across distributed nodes.
+          </p>
+          <div class="project-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">REST API</span>
+            <span class="tag">Metrics</span>
+            <span class="tag">Docker</span>
           </div>
         </div>
-        <h3 class="project-title">Apex Crypto Portfolio</h3>
-        <p class="project-desc">
-          Sleek dark-mode desktop web analytics panel displaying cryptocurrency asset metrics, trade histories, and balance details.
-        </p>
-        <div class="project-tech">
-          <span class="tech-tag">Figma</span>
-          <span class="tech-tag">Web Design</span>
-          <span class="tech-tag">Dashboard</span>
+        <div class="project-actions">
+          <a href="https://github.com/iaruneswaran" target="_blank" class="project-link">
+            GitHub <span class="btn-arrow">↗</span>
+          </a>
+          <a href="#" class="project-link project-link-secondary">
+            Live Preview <span class="btn-arrow">↗</span>
+          </a>
         </div>
       </div>
-      <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-btn">
-        View Showcase ↗
-      </a>
-    </div>
-
-    <!-- Design 3 -->
-    <div class="project-card">
-      <div class="project-main">
-        <div class="project-header">
-          <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"/>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-          <div class="project-links">
-            <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <h3 class="project-title">Studio Alpha Landing Page</h3>
-        <p class="project-desc">
-          Premium minimalist web page design for a digital agency showcasing high-contrast layout grids, bold typography, and smooth page transitions.
-        </p>
-        <div class="project-tech">
-          <span class="tech-tag">Figma</span>
-          <span class="tech-tag">Landing Page</span>
-          <span class="tech-tag">Minimalism</span>
-        </div>
-      </div>
-      <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-btn">
-        View Concept ↗
-      </a>
     </div>
   </div>
 </section>
