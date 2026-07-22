@@ -2,7 +2,7 @@ const G = id => document.getElementById(id);
 
 const panelData = {
   p1: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> blackbox agent run --task refactor-auth' },
+    { cls:'cmd',  t:'> agent run --task refactor-auth' },
     { cls:'info', t:'[LOAD] auth.service.ts .............' },
     { cls:'ok',   t:'[SCAN] 847 lines analyzed' },
     { cls:'ok',   t:'[REFACTOR] Splitting monolith...' },
@@ -14,7 +14,7 @@ const panelData = {
     { cls:'ok',   t:'[SCAN] 1,203 lines analyzed' },
   ]},
   p2: { type:'fade', lines:[
-    { cls:'cmd',  t:'> blackbox agent run --task db-migration' },
+    { cls:'cmd',  t:'> agent run --task db-migration' },
     { cls:'info', t:'[CONN] Connecting to schema registry' },
     { cls:'ok',   t:'[CONN] Registry reached' },
     { cls:'info', t:'[DIFF] Comparing schemas...' },
@@ -25,7 +25,7 @@ const panelData = {
     { cls:'dim',  t:'Active agents: 4  Queue: 0' },
   ]},
   p3: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> blackbox agent run --task generate-tests' },
+    { cls:'cmd',  t:'> agent run --task generate-tests' },
     { cls:'info', t:'[SCAN] Uncovered functions: 23' },
     { cls:'ok',   t:'[GEN] tests/auth.test.ts (8 cases)' },
     { cls:'ok',   t:'[GEN] tests/billing.test.ts (6 cases)' },
@@ -34,7 +34,7 @@ const panelData = {
     { cls:'dim',  t:'Coverage: 87.3% -> 94.1%' },
   ]},
   p4: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> blackbox agent run --task deploy-staging' },
+    { cls:'cmd',  t:'> agent run --task deploy-staging' },
     { cls:'info', t:'[BUILD] next build .............' },
     { cls:'ok',   t:'[BUILD] ................... OK' },
     { cls:'ok',   t:'[LINT] 0 errors, 0 warnings' },
@@ -43,17 +43,17 @@ const panelData = {
     { cls:'ok',   t:'[DEPLOY] staging.app.io live' },
   ]},
   p5: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> blackbox status --all' },
+    { cls:'cmd',  t:'> agent status --all' },
     { cls:'info', t:'[SYS] Orchestrator: v2.4.1' },
     { cls:'ok',   t:'[API] Anthropic Claude ......... OK' },
     { cls:'ok',   t:'[API] OpenAI Codex ............. OK' },
-    { cls:'ok',   t:'[API] Blackbox Core ............ OK' },
+    { cls:'ok',   t:'[API] Agent Core ............... OK' },
     { cls:'ok',   t:'[DB] PostgreSQL ............... OK' },
     { cls:'ok',   t:'[CACHE] Redis .................. OK' },
     { cls:'dim',  t:'Uptime: 99.97%  SLA: 99.9%' },
   ]},
   p6: { type:'fade', lines:[
-    { cls:'cmd',  t:'> blackbox agent run --task code-review' },
+    { cls:'cmd',  t:'> agent run --task code-review' },
     { cls:'info', t:'[LOAD] PR #247 -- 14 files changed' },
     { cls:'ok',   t:'[SCAN] Security patterns ........ OK' },
     { cls:'warn', t:'[SCAN] Performance anti-patterns: 1' },
@@ -62,7 +62,7 @@ const panelData = {
     { cls:'dim',  t:'Review score: 94 / 100' },
   ]},
   p7: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> blackbox agent run --task perf-optimize' },
+    { cls:'cmd',  t:'> agent run --task perf-optimize' },
     { cls:'ok',   t:'[BENCH] Baseline: 342ms p95' },
     { cls:'info', t:'[SCAN] Bundle analysis...' },
     { cls:'warn', t:'[FOUND] 3 heavy components' },
@@ -82,7 +82,7 @@ const panelData = {
     { cls:'ok',   t:'[18:01:19] Agent-04 DONE' },
   ]},
   p9: { type:'fade', lines:[
-    { cls:'cmd',  t:'> blackbox queue status' },
+    { cls:'cmd',  t:'> agent queue status' },
     { cls:'ok',   t:'[QUEUE] Active tasks: 4 / 8 slots' },
     { cls:'ok',   t:'[WAIT] 0 pending' },
     { cls:'dim',  t:'[HIST] 247 tasks today' },
@@ -92,7 +92,7 @@ const panelData = {
     { cls:'ok',   t:'[QUOTA] 11,247 / 50,000 used' },
   ]},
   p10: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> blackbox agent run --task rollback-prod' },
+    { cls:'cmd',  t:'> agent run --task rollback-prod' },
     { cls:'ok',   t:'[OK] deploy-v2.42.0 health check PASSED' },
     { cls:'info', t:'[FETCH] Last stable: deploy-v2.41.0' },
     { cls:'warn', t:'[DIFF] 3 commits to revert' },
@@ -101,7 +101,7 @@ const panelData = {
     { cls:'ok',   t:'[DONE] Rollback complete in 23s' },
   ]},
   p11: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> blackbox agent run --task update-docs' },
+    { cls:'cmd',  t:'> agent run --task update-docs' },
     { cls:'info', t:'[SCAN] 7 undocumented exports found' },
     { cls:'ok',   t:'[GEN] docs/api-reference.md updated' },
     { cls:'ok',   t:'[GEN] docs/auth-guide.md created' },
@@ -110,7 +110,7 @@ const panelData = {
     { cls:'dim',  t:'Pages updated: 14' },
   ]},
   p12: { type:'fade', lines:[
-    { cls:'cmd',  t:'> blackbox net status --verbose' },
+    { cls:'cmd',  t:'> agent net status --verbose' },
     { cls:'ok',   t:'[EDGE] us-east-1 ........... 12ms' },
     { cls:'ok',   t:'[EDGE] eu-west-1 ........... 34ms' },
     { cls:'ok',   t:'[EDGE] ap-southeast-1 ...... 89ms' },
