@@ -42,7 +42,7 @@ nav {
 .nav-container {
   width: 100%;
   max-width: 1200px;
-  padding: 0 40px;
+  padding: 0;
   height: 100%;
   display: flex;
   align-items: center;
@@ -383,7 +383,7 @@ nav {
   }
 
   .nav-container {
-    padding: 0 20px;
+    padding: 0;
   }
   #p1, #p4, #p7, #p10 {
     display: none;
@@ -409,7 +409,7 @@ nav {
 
 @media (max-width: 900px) {
   .nav-container {
-    padding: 0 20px;
+    padding: 0;
   }
   .nav-links {
     gap: 20px;
@@ -418,7 +418,7 @@ nav {
 
 @media (max-width: 600px) {
   .nav-container {
-    padding: 0 14px;
+    padding: 0;
   }
   .logo {
     font-size: 13.5px;
@@ -451,7 +451,7 @@ nav {
 
 @media (max-width: 380px) {
   .nav-container {
-    padding: 0 10px;
+    padding: 0;
   }
   .nav-links {
     gap: 8px;
