@@ -556,6 +556,50 @@
     color: white;
   }
 
+  /* ── DESIGN PROJECTS PLACEHOLDER ────────────────────────── */
+  .design-header {
+    margin-top: 80px;
+    margin-bottom: 40px;
+    padding-top: 60px;
+    border-top: 1px solid var(--panel-border);
+  }
+
+  .project-image-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090909;
+    border: 1px dashed var(--panel-border);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .project-card:hover .project-image-placeholder {
+    border-color: rgba(255, 107, 0, 0.4);
+  }
+
+  .placeholder-icon {
+    width: 22px;
+    height: 22px;
+    stroke: var(--text-dim);
+  }
+
+  .placeholder-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
   @media (max-width: 900px) {
     .projects-section {
       padding: 60px 20px;
@@ -810,6 +854,148 @@
           </a>
           <a href="#" class="project-link project-link-secondary">
             Live Preview <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Projects Header -->
+    <div class="section-header design-header">
+      <div class="section-badge"><span class="dot dot-active"></span> 02 // UI/UX SHOWCASE</div>
+      <h2 class="section-title">Design Projects</h2>
+      <p class="section-subtitle">
+        User interface concepts, wireframe architectures, design systems, and mobile interactive experiences.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Design Project 1 -->
+      <div class="project-card">
+        <div>
+          <div class="project-image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="placeholder-label">DESIGN PLACEHOLDER // 16:9</span>
+          </div>
+          <div class="project-card-header">
+            <span class="project-id">DSG-01 // UI/UX KIT</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">Healthcare Design System</h3>
+          <p class="project-desc">
+            Comprehensive UI/UX component library created for digital health applications. Includes accessibility-first color tokens, interactive wireframes, and patient flow diagrams.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Figma</span>
+            <span class="tag">UI/UX Design</span>
+            <span class="tag">Design Tokens</span>
+            <span class="tag">Wireframes</span>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-link">
+            Behance Case Study <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Design Project 2 -->
+      <div class="project-card">
+        <div>
+          <div class="project-image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="placeholder-label">DESIGN PLACEHOLDER // 16:9</span>
+          </div>
+          <div class="project-card-header">
+            <span class="project-id">DSG-02 // MOBILE APP</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">AI Assistant Mobile App Concept</h3>
+          <p class="project-desc">
+            Dark-mode mobile interface design featuring conversational UI states, voice wave animations, and micro-interactions for autonomous AI task management.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Mobile UI</span>
+            <span class="tag">Prototyping</span>
+            <span class="tag">Micro-interactions</span>
+            <span class="tag">Figma</span>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-link">
+            Behance Case Study <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Design Project 3 -->
+      <div class="project-card">
+        <div>
+          <div class="project-image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="placeholder-label">DESIGN PLACEHOLDER // 16:9</span>
+          </div>
+          <div class="project-card-header">
+            <span class="project-id">DSG-03 // BRANDING & WEB</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">Developer Platform Landing Experience</h3>
+          <p class="project-desc">
+            Modern landing page design, brand identity, and custom typography grid built for high-conversion developer tools and SaaS platforms.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Visual Design</span>
+            <span class="tag">Typography</span>
+            <span class="tag">Brand Identity</span>
+            <span class="tag">Web Design</span>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-link">
+            Behance Case Study <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Design Project 4 -->
+      <div class="project-card">
+        <div>
+          <div class="project-image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="placeholder-label">DESIGN PLACEHOLDER // 16:9</span>
+          </div>
+          <div class="project-card-header">
+            <span class="project-id">DSG-04 // DASHBOARD</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">Fintech Analytics & Telemetry UI</h3>
+          <p class="project-desc">
+            High-density data visualization interface with custom chart widgets, modular grid layouts, and dark theme color hierarchy.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Dashboard Design</span>
+            <span class="tag">Data Visualization</span>
+            <span class="tag">UX Research</span>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://www.behance.net/aruneswaran" target="_blank" class="project-link">
+            Behance Case Study <span class="btn-arrow">↗</span>
           </a>
         </div>
       </div>
