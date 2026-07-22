@@ -632,10 +632,10 @@
     color: #666;
   }
 
-  /* cable container sits below the P letter */
+  /* cable container — top set by JS to P letter bottom edge */
   .cable-root {
     position: absolute;
-    bottom: 0;
+    top: 0;   /* overridden by JS */
     left: 50%;
     transform: translateX(-50%);
     width: 40px;
@@ -1294,14 +1294,20 @@ setInterval(() => {
     rafId = requestAnimationFrame(tick);
   }
 
-  // Reposition cable anchor under the P letter horizontally
+  // Reposition cable so its top edge aligns with the BOTTOM of the P letter
   function alignCable() {
     const pEl = document.getElementById('fl-P');
     if (!pEl) return;
     const footerRect = footer.getBoundingClientRect();
     const pRect      = pEl.getBoundingClientRect();
-    const pCenter    = pRect.left + pRect.width / 2 - footerRect.left;
+
+    // Horizontal: center of P
+    const pCenter = pRect.left + pRect.width / 2 - footerRect.left;
     cableRoot.style.left = pCenter + 'px';
+
+    // Vertical: cable top = P bottom edge (relative to footer)
+    const pBottom = pRect.bottom - footerRect.top;
+    cableRoot.style.top = pBottom + 'px';
   }
   alignCable();
   window.addEventListener('resize', alignCable);
