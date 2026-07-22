@@ -576,6 +576,127 @@
       font-size: 32px;
     }
   }
+
+  /* ── DESIGN PROJECTS SECTION ──────────────────────── */
+  .design-section {
+    padding: 100px 60px;
+    background: #0A0A0A;
+    border-top: 1px solid var(--panel-border);
+    position: relative;
+    z-index: 5;
+  }
+
+  .design-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+  }
+
+  .design-card {
+    background: #0D0D0D;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+  }
+
+  .design-card:hover {
+    border-color: var(--yellow);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(200, 168, 75, 0.05);
+  }
+
+  .design-img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #141414;
+  }
+
+  .design-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .design-card:hover .design-img {
+    transform: scale(1.05);
+  }
+
+  .design-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 10, 10, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .design-img-wrapper:hover .design-overlay {
+    opacity: 1;
+  }
+
+  .design-link-btn {
+    color: black;
+    background: white;
+    padding: 12px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  .design-link-btn:hover {
+    background: #E0E0E0;
+  }
+
+  .design-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .design-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .design-card-desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  @media (max-width: 900px) {
+    .design-section {
+      padding: 80px 24px;
+    }
+
+    .design-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .design-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
 <body>
@@ -799,6 +920,72 @@
       <a href="https://github.com/iaruneswaran" target="_blank" class="project-btn">
         View Project ↗
       </a>
+    </div>
+  </div>
+</section>
+
+<section class="design-section" id="design-projects">
+  <div class="section-header">
+    <span class="section-tag">// CASE STUDIES & UI/UX</span>
+    <h2 class="section-title">Design Projects</h2>
+  </div>
+  
+  <div class="design-grid">
+    <!-- Design 1 -->
+    <div class="design-card">
+      <div class="design-img-wrapper">
+        <img class="design-img" src="healthcare_mockup.png" alt="Healthcare App UX" />
+        <div class="design-overlay">
+          <a href="https://www.behance.net/aruneswaran" target="_blank" class="design-link-btn">View UX Case Study ↗</a>
+        </div>
+      </div>
+      <div class="design-info">
+        <h3 class="design-card-title">Amrit Health Mobile Dashboard</h3>
+        <p class="design-card-desc">User interface design and custom telemetry graphs for real-time vitals monitoring.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Figma</span>
+          <span class="tech-tag">UI/UX</span>
+          <span class="tech-tag">Design System</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design 2 -->
+    <div class="design-card">
+      <div class="design-img-wrapper">
+        <img class="design-img" src="fintech_mockup.png" alt="Fintech Web Dashboard" />
+        <div class="design-overlay">
+          <a href="https://www.behance.net/aruneswaran" target="_blank" class="design-link-btn">View UI Showcase ↗</a>
+        </div>
+      </div>
+      <div class="design-info">
+        <h3 class="design-card-title">Apex Crypto Portfolio</h3>
+        <p class="design-card-desc">Sleek dark-mode desktop web analytics panel displaying cryptocurrency asset metrics.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Figma</span>
+          <span class="tech-tag">Web Design</span>
+          <span class="tech-tag">Dashboard</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design 3 -->
+    <div class="design-card">
+      <div class="design-img-wrapper">
+        <img class="design-img" src="creative_studio_mockup.png" alt="Creative Studio Web Design" />
+        <div class="design-overlay">
+          <a href="https://www.behance.net/aruneswaran" target="_blank" class="design-link-btn">View Design Concept ↗</a>
+        </div>
+      </div>
+      <div class="design-info">
+        <h3 class="design-card-title">Studio Alpha Landing Page</h3>
+        <p class="design-card-desc">Premium minimalist web page design for a digital design agency featuring high-contrast layout grids.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Figma</span>
+          <span class="tech-tag">Minimalism</span>
+          <span class="tech-tag">Landing Page</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
