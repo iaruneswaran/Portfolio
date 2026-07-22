@@ -267,14 +267,13 @@ nav {
   font-size: 13px;
   font-weight: 600;
   border-radius: 4px;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
 .profile-btn:hover {
   background: #141414;
-  border-color: var(--text-secondary);
+  border-color: var(--orange);
   color: white;
-  transform: translateY(-1px);
 }
 
 .btn-icon {
@@ -474,7 +473,7 @@ nav {
 .projects-section {
   position: relative;
   background: var(--bg);
-  padding: 0 40px;
+  padding: 100px 40px;
   z-index: 10;
 }
 
