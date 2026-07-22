@@ -623,6 +623,7 @@ nav {
   margin-top: 80px;
   margin-bottom: 40px;
   padding-top: 60px;
+  padding-bottom: 100px;
   border-top: 1px solid var(--panel-border);
 }
 
