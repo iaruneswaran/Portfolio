@@ -313,6 +313,78 @@
     animation: sweepDown 5s linear infinite;
   }
   @keyframes sweepDown { 0% { top: 28px; } 100% { top: 105%; } }
+
+  /* ── MOBILE RESPONSIVENESS ────────────────────────── */
+  @media (max-width: 900px) {
+    .hero {
+      display: flex;
+      flex-direction: column;
+      min-height: auto;
+      overflow-y: auto;
+    }
+
+    .hero-bg-left, .terminal-fade {
+      display: none;
+    }
+
+    .hero-left {
+      position: relative;
+      top: auto; left: auto; bottom: auto;
+      width: 100%;
+      max-width: 100%;
+      min-height: auto;
+      padding: 100px 24px 40px 24px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      align-items: center;
+    }
+
+    .profile-container {
+      margin-top: 0;
+      max-width: 100%;
+    }
+
+    .terminal-grid {
+      position: relative;
+      top: auto; right: auto; bottom: auto; left: auto;
+      width: 100%;
+      height: auto;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-auto-rows: minmax(180px, auto);
+      gap: 1px;
+    }
+
+    .t-panel {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    nav {
+      padding: 0 16px;
+    }
+    .nav-links {
+      gap: 16px;
+    }
+    .logo {
+      font-size: 14px;
+    }
+    .nav-links a {
+      font-size: 11px;
+    }
+    .btn-mail {
+      font-size: 11px;
+      gap: 4px;
+    }
+    .btn-mail svg {
+      width: 12px;
+      height: 12px;
+    }
+    .terminal-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
 <body>
