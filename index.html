@@ -576,174 +576,159 @@
       font-size: 32px;
     }
   }
-
-  /* ── FOOTER SECTION ───────────────────────────────── */
+  /* ── FOOTER CABLE ANIMATION ──────────────────────────── */
   .footer-section {
     position: relative;
-    padding: 120px 0;
-    background: #050505;
+    background: #060606;
     border-top: 1px solid var(--panel-border);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-bottom: 48px;
     overflow: hidden;
-    z-index: 5;
-    height: 400px;
+    min-height: 340px;
+  }
+
+  .footer-bg-label {
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(13px, 2vw, 15px);
+    color: rgba(255,255,255,0.18);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .footer-cable-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* The name text that lights up */
+  .footer-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(52px, 9vw, 110px);
+    font-weight: 800;
+    letter-spacing: -4px;
+    color: #1a1a1a;
+    line-height: 1;
+    position: relative;
+    z-index: 2;
+    transition: color 0.4s ease, text-shadow 0.4s ease;
     user-select: none;
   }
 
-  .footer-text-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .footer-name.lit {
+    color: #ffffff;
+    text-shadow:
+      0 0 30px rgba(255,255,255,0.9),
+      0 0 60px rgba(255,255,255,0.5),
+      0 0 120px rgba(200,168,75,0.35);
+  }
+
+  /* SVG cable container placed just below the name */
+  .footer-cable-svg {
+    display: block;
+    width: 80px;
+    overflow: visible;
+    position: relative;
+    z-index: 3;
+    margin-top: -2px;
+  }
+
+  /* The cable wire path that draws itself upward */
+  .cable-wire {
+    stroke: #555;
+    stroke-width: 5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 420;
+    stroke-dashoffset: 420;
+  }
+
+  .cable-wire.animate {
+    animation: drawCable 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes drawCable {
+    0%   { stroke-dashoffset: 420; stroke: #333; }
+    60%  { stroke: #888; }
+    100% { stroke-dashoffset: 0; stroke: #aaa; }
+  }
+
+  /* The connector plug head at the tip */
+  .cable-plug {
+    fill: #3a3a3a;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .cable-plug.visible {
+    opacity: 1;
+  }
+
+  /* Spark flash effect when cable connects */
+  .cable-spark {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 12px 6px rgba(255,220,80,0.95), 0 0 30px 10px rgba(255,180,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .cable-spark.flash {
+    animation: sparkFlash 0.5s ease-out forwards;
+  }
+
+  @keyframes sparkFlash {
+    0%   { opacity: 1; transform: translateX(-50%) scale(1); }
+    50%  { opacity: 1; transform: translateX(-50%) scale(2.5); }
+    100% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+  }
+
+  /* Orange accent squares matching the reference image */
+  .footer-accent {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #E35524;
+    bottom: 72px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer-accent.left  { left: calc(50% - 200px); }
+  .footer-accent.right { right: calc(50% - 200px); }
+  .footer-accent.show  { opacity: 1; }
+
+  .footer-sub {
+    margin-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 2px;
     text-align: center;
   }
 
-  .footer-faded-text {
-    font-size: 28px;
-    font-weight: 500;
-    color: var(--text-dim);
-    letter-spacing: -0.5px;
-    margin-bottom: 8px;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .footer-glow-text {
-    font-size: 80px;
-    font-weight: 900;
-    letter-spacing: -2px;
-    line-height: 1;
-    position: relative;
-    font-family: 'Inter', sans-serif;
-    color: #1C1C1C;
-    animation: textGlowCycle 8s infinite ease-in-out;
-  }
-
-  .p-letter {
-    position: relative;
-    display: inline-block;
-  }
-
-  .footer-cable-wrapper {
-    position: absolute;
-    top: 95%;
-    left: 50%;
-    transform: translate(-50%, 60px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    pointer-events: none;
-    z-index: 2;
-    animation: plugInCycle 8s infinite ease-in-out;
-  }
-
-  .cable-connector {
-    width: 10px;
-    height: 14px;
-    background: #242424;
-    border-radius: 2px;
-    border: 1px solid #333;
-    position: relative;
-  }
-
-  .cable-connector::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 3px;
-    width: 2px;
-    height: 5px;
-    background: #444;
-    border-radius: 1px;
-  }
-
-  .cable-wire {
-    width: 2px;
-    height: 300px;
-    background: linear-gradient(180deg, #242424 0%, #0A0A0A 100%);
-  }
-
-  .footer-decorator {
-    position: absolute;
-    bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 2;
-  }
-
-  .footer-decorator.left {
-    left: 20%;
-  }
-
-  .footer-decorator.right {
-    right: 20%;
-  }
-
-  .decorator-line {
-    width: 1px;
-    height: 120px;
-    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
-  }
-
-  .decorator-square {
-    width: 12px;
-    height: 12px;
-    background: var(--orange);
-    margin-top: 8px;
-    box-shadow: 0 0 10px rgba(255, 107, 0, 0.4);
-  }
-
-  @keyframes plugInCycle {
-    0%, 15% {
-      transform: translate(-50%, 60px);
-    }
-    22%, 75% {
-      transform: translate(-50%, 0);
-    }
-    82%, 100% {
-      transform: translate(-50%, 60px);
-    }
-  }
-
-  @keyframes textGlowCycle {
-    0%, 19% {
-      color: #1C1C1C;
-      text-shadow: none;
-    }
-    20% {
-      color: white;
-      text-shadow: 0 0 10px #fff, 0 0 25px #fff, 0 0 35px var(--orange);
-    }
-    21%, 74% {
-      color: white;
-      text-shadow: 0 0 8px #fff, 0 0 20px #fff, 0 0 30px var(--orange);
-    }
-    75% {
-      color: #A0A0A0;
-      text-shadow: 0 0 4px #fff, 0 0 10px var(--orange);
-    }
-    76%, 100% {
-      color: #1C1C1C;
-      text-shadow: none;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .footer-section {
-      height: 300px;
-      padding: 80px 0;
-    }
-    .footer-glow-text {
-      font-size: 56px;
-    }
-    .footer-faded-text {
-      font-size: 20px;
-    }
-    .footer-decorator {
-      display: none;
-    }
+  @media (max-width: 600px) {
+    .footer-name { font-size: 48px; letter-spacing: -2px; }
+    .footer-accent.left  { left: 16px; }
+    .footer-accent.right { right: 16px; }
   }
 </style>
 </head>
@@ -755,8 +740,8 @@
   </div>
   <ul class="nav-links">
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#hero">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
   </ul>
   <div class="nav-actions">
     <a href="mailto:iaruneswar@gmail.com" class="btn-mail">
@@ -769,7 +754,7 @@
   </div>
 </nav>
 
-<section class="hero" id="hero">
+<section class="hero">
   <!-- solid bg left of grid -->
   <div class="hero-bg-left"></div>
   <!-- soft fade at left edge of grid -->
@@ -1080,31 +1065,6 @@
   </div>
 </section>
 
-<footer class="footer-section" id="contact">
-  <!-- Left Decorator -->
-  <div class="footer-decorator left">
-    <div class="decorator-line"></div>
-    <div class="decorator-square"></div>
-  </div>
-
-  <!-- Main Animation Text -->
-  <div class="footer-text-wrapper">
-    <div class="footer-faded-text">Less Isn't</div>
-    <div class="footer-glow-text">
-      Em<span class="p-letter">p<div class="footer-cable-wrapper">
-        <div class="cable-connector"></div>
-        <div class="cable-wire"></div>
-      </div></span>ty
-    </div>
-  </div>
-
-  <!-- Right Decorator -->
-  <div class="footer-decorator right">
-    <div class="decorator-line"></div>
-    <div class="decorator-square"></div>
-  </div>
-</footer>
-
 <script>
 const G = id => document.getElementById(id);
 
@@ -1318,5 +1278,93 @@ setInterval(() => {
   });
 }, 2400);
 </script>
+<footer class="footer-section" id="footer">
+  <p class="footer-bg-label">Available for freelance &amp; full-time work</p>
+
+  <!-- Orange accent squares -->
+  <div class="footer-accent left"  id="fa-left"></div>
+  <div class="footer-accent right" id="fa-right"></div>
+
+  <div class="footer-cable-wrap">
+    <!-- Big name that lights up -->
+    <div class="footer-name" id="footer-name">Arun Eswaran</div>
+
+    <!-- Spark dot at connection point -->
+    <div class="cable-spark" id="cable-spark"></div>
+
+    <!-- Cable SVG: drawn from bottom upward, connector tip touches the text baseline -->
+    <svg class="footer-cable-svg" viewBox="0 0 80 220" height="220" id="cable-svg">
+      <!-- Plug head (connector tip at top touching the text) -->
+      <rect class="cable-plug" id="cable-plug" x="28" y="4" width="24" height="14" rx="3"/>
+      <!-- Notch lines on plug -->
+      <line x1="33" y1="8" x2="33" y2="16" stroke="#222" stroke-width="2" opacity="0"/>
+      <line x1="40" y1="8" x2="40" y2="16" stroke="#222" stroke-width="2" opacity="0"/>
+      <line x1="47" y1="8" x2="47" y2="16" stroke="#222" stroke-width="2" opacity="0"/>
+      <!-- Cable wire path: starts at bottom (220) goes straight up to plug (18) -->
+      <path class="cable-wire" id="cable-wire"
+        d="M 40 220
+           C 40 180, 40 160, 40 140
+           C 40 110, 30 95, 40 80
+           C 50 65, 40 45, 40 18"
+      />
+    </svg>
+  </div>
+
+  <p class="footer-sub">© 2025 Arun Eswaran &nbsp;·&nbsp; All rights reserved</p>
+</footer>
+
+<script>
+(function() {
+  const wire    = document.getElementById('cable-wire');
+  const plug    = document.getElementById('cable-plug');
+  const name    = document.getElementById('footer-name');
+  const spark   = document.getElementById('cable-spark');
+  const faL     = document.getElementById('fa-left');
+  const faR     = document.getElementById('fa-right');
+  let   fired   = false;
+
+  function runCableAnimation() {
+    if (fired) return;
+    fired = true;
+
+    // 1. Draw the cable
+    wire.classList.add('animate');
+
+    // 2. Show plug head when wire nearly reaches top
+    setTimeout(() => {
+      plug.classList.add('visible');
+      plug.style.fill = '#666';
+
+      // 3. Spark flash at connection
+      spark.classList.add('flash');
+
+      // 4. Light up the name text
+      name.classList.add('lit');
+
+      // 5. Accent squares pop in
+      faL.classList.add('show');
+      faR.classList.add('show');
+
+      // 6. Wire brightens to match lit state
+      wire.style.stroke = '#bbb';
+      plug.style.fill = '#999';
+    }, 1350);
+  }
+
+  // Trigger when footer scrolls into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Small delay so user can see the start
+        setTimeout(runCableAnimation, 300);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.35 });
+
+  observer.observe(document.getElementById('footer'));
+})();
+</script>
+
 </body>
 </html>
