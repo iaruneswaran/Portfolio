@@ -600,6 +600,139 @@
     text-transform: uppercase;
   }
 
+  /* ── FOOTER SECTION ────────────────────────── */
+  .site-footer {
+    position: relative;
+    background: #070707;
+    border-top: 1px solid var(--panel-border);
+    padding: 80px 40px 40px 40px;
+    z-index: 10;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-cta-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--panel-border);
+    margin-bottom: 60px;
+  }
+
+  .footer-cta-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .footer-cta-sub {
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  .footer-mail-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: black;
+    background: white;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .footer-mail-btn:hover {
+    background: #E0E0E0;
+    transform: translateY(-2px);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 60px;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.3px;
+  }
+
+  .footer-bio {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 380px;
+  }
+
+  .footer-status-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-bright);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-col-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .footer-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-link {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: white;
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 32px;
+    border-top: 1px solid var(--panel-border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
   @media (max-width: 900px) {
     .projects-section {
       padding: 60px 20px;
@@ -607,6 +740,24 @@
     .projects-grid {
       grid-template-columns: 1fr;
     }
+    .site-footer {
+      padding: 60px 20px 30px 20px;
+    }
+    .footer-cta-block {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
   html { scroll-behavior: smooth; }
 </style>
 </head>
@@ -1002,6 +1153,63 @@
     </div>
   </div>
 </section>
+
+<!-- ── FOOTER SECTION ────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- CTA Block -->
+    <div class="footer-cta-block">
+      <div>
+        <h3 class="footer-cta-title">Let's build something extraordinary.</h3>
+        <p class="footer-cta-sub">Available for UI/UX design, full-stack architecture, and technical consultation.</p>
+      </div>
+      <a href="mailto:iaruneswar@gmail.com" class="footer-mail-btn">
+        GET IN TOUCH <span class="btn-arrow">↗</span>
+      </a>
+    </div>
+
+    <!-- Main Footer Grid -->
+    <div class="footer-grid">
+      <!-- Brand Column -->
+      <div class="footer-brand">
+        <div class="footer-logo">Arun Eswaran</div>
+        <p class="footer-bio">
+          UI/UX Designer & Full-Stack Developer creating performant web architectures, intuitive design systems, and digital experiences.
+        </p>
+        <div class="footer-status-pill">
+          <span class="dot dot-active"></span> STATUS // AVAILABLE FOR NEW PROJECTS
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="footer-col-title">NAVIGATION</div>
+        <ul class="footer-links-list">
+          <li><a href="#projects" class="footer-link">Projects</a></li>
+          <li><a href="#" class="footer-link">About</a></li>
+          <li><a href="mailto:iaruneswar@gmail.com" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Connect Links -->
+      <div>
+        <div class="footer-col-title">CONNECT</div>
+        <ul class="footer-links-list">
+          <li><a href="https://github.com/iaruneswaran" target="_blank" class="footer-link">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/iaruneswaran/" target="_blank" class="footer-link">LinkedIn ↗</a></li>
+          <li><a href="https://www.behance.net/aruneswaran" target="_blank" class="footer-link">Behance ↗</a></li>
+          <li><a href="mailto:iaruneswar@gmail.com" class="footer-link">Email ↗</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div>© 2026 Arun Eswaran. All rights reserved.</div>
+      <div>SYSTEM STATUS: 100% OPERATIONAL // BUILT WITH HTML5 & CSS3</div>
+    </div>
+  </div>
+</footer>
 
 <script>
 const G = id => document.getElementById(id);
