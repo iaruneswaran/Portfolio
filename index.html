@@ -455,7 +455,7 @@
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
@@ -829,7 +829,13 @@
     margin-bottom: 12px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 800px) {
     .projects-section, .about-section {
       padding: 60px 20px;
     }
@@ -1094,6 +1100,62 @@
             <span class="tag">REST API</span>
             <span class="tag">Metrics</span>
             <span class="tag">Docker</span>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://github.com/iaruneswaran" target="_blank" class="project-link">
+            GitHub <span class="btn-arrow">↗</span>
+          </a>
+          <a href="#" class="project-link project-link-secondary">
+            Live Preview <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card">
+        <div>
+          <div class="project-card-header">
+            <span class="project-id">PRJ-05 // E-COMMERCE</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">Quantum Storefront Engine</h3>
+          <p class="project-desc">
+            High-throughput e-commerce engine with real-time inventory synchronization, instant cart state, and Stripe payment gateway integration.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Stripe API</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag">Redis</span>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://github.com/iaruneswaran" target="_blank" class="project-link">
+            GitHub <span class="btn-arrow">↗</span>
+          </a>
+          <a href="#" class="project-link project-link-secondary">
+            Live Preview <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card">
+        <div>
+          <div class="project-card-header">
+            <span class="project-id">PRJ-06 // AI TOOLS</span>
+            <span class="dot dot-active"></span>
+          </div>
+          <h3 class="project-name">CodeRefactor CLI & Extension</h3>
+          <p class="project-desc">
+            Developer productivity tool leveraging LLM code completion, automated unit test generation, and AST structural analysis pipelines.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">VS Code API</span>
+            <span class="tag">LLM Pipeline</span>
+            <span class="tag">AST Parsing</span>
           </div>
         </div>
         <div class="project-actions">
