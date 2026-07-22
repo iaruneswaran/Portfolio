@@ -576,159 +576,81 @@
       font-size: 32px;
     }
   }
-  /* ── FOOTER CABLE ANIMATION ──────────────────────────── */
+  /* ── FOOTER CABLE ANIMATION ───────────────────────── */
   .footer-section {
     position: relative;
-    background: #060606;
+    background: #080808;
     border-top: 1px solid var(--panel-border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 48px;
     overflow: hidden;
-    min-height: 340px;
-  }
-
-  .footer-bg-label {
-    position: absolute;
-    top: 38px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(13px, 2vw, 15px);
-    color: rgba(255,255,255,0.18);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  .footer-cable-wrap {
-    position: relative;
+    height: 420px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    justify-content: center;
   }
 
-  /* The name text that lights up */
-  .footer-name {
+  .footer-text-wrap {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .footer-word {
     font-family: 'JetBrains Mono', monospace;
     font-size: clamp(52px, 9vw, 110px);
     font-weight: 800;
     letter-spacing: -4px;
-    color: #1a1a1a;
     line-height: 1;
-    position: relative;
-    z-index: 2;
-    transition: color 0.4s ease, text-shadow 0.4s ease;
-    user-select: none;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 0;
   }
 
-  .footer-name.lit {
+  .footer-letter {
+    color: #272727;
+    transition: color 0.25s ease;
+    display: inline-block;
+  }
+
+  .footer-letter.lit {
     color: #ffffff;
-    text-shadow:
-      0 0 30px rgba(255,255,255,0.9),
-      0 0 60px rgba(255,255,255,0.5),
-      0 0 120px rgba(200,168,75,0.35);
   }
-
-  /* SVG cable container placed just below the name */
-  .footer-cable-svg {
-    display: block;
-    width: 80px;
-    overflow: visible;
-    position: relative;
-    z-index: 3;
-    margin-top: -2px;
-  }
-
-  /* The cable wire path that draws itself upward */
-  .cable-wire {
-    stroke: #555;
-    stroke-width: 5;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 420;
-    stroke-dashoffset: 420;
-  }
-
-  .cable-wire.animate {
-    animation: drawCable 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  @keyframes drawCable {
-    0%   { stroke-dashoffset: 420; stroke: #333; }
-    60%  { stroke: #888; }
-    100% { stroke-dashoffset: 0; stroke: #aaa; }
-  }
-
-  /* The connector plug head at the tip */
-  .cable-plug {
-    fill: #3a3a3a;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .cable-plug.visible {
-    opacity: 1;
-  }
-
-  /* Spark flash effect when cable connects */
-  .cable-spark {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 0 12px 6px rgba(255,220,80,0.95), 0 0 30px 10px rgba(255,180,0,0.5);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  .cable-spark.flash {
-    animation: sparkFlash 0.5s ease-out forwards;
-  }
-
-  @keyframes sparkFlash {
-    0%   { opacity: 1; transform: translateX(-50%) scale(1); }
-    50%  { opacity: 1; transform: translateX(-50%) scale(2.5); }
-    100% { opacity: 0; transform: translateX(-50%) scale(0.5); }
-  }
-
-  /* Orange accent squares matching the reference image */
-  .footer-accent {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: #E35524;
-    bottom: 72px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .footer-accent.left  { left: calc(50% - 200px); }
-  .footer-accent.right { right: calc(50% - 200px); }
-  .footer-accent.show  { opacity: 1; }
 
   .footer-sub {
-    margin-top: 32px;
+    margin-top: 18px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: rgba(255,255,255,0.25);
+    font-size: 11px;
     letter-spacing: 2px;
-    text-align: center;
+    color: #333;
+    text-transform: uppercase;
+    transition: color 0.5s ease;
+  }
+
+  .footer-sub.lit {
+    color: #666;
+  }
+
+  /* cable container sits below the P letter */
+  .cable-root {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .cable-svg {
+    width: 40px;
+    overflow: visible;
   }
 
   @media (max-width: 600px) {
-    .footer-name { font-size: 48px; letter-spacing: -2px; }
-    .footer-accent.left  { left: 16px; }
-    .footer-accent.right { right: 16px; }
+    .footer-section { height: 340px; }
+    .footer-word { font-size: 52px; letter-spacing: -2px; }
   }
 </style>
 </head>
@@ -1278,91 +1200,121 @@ setInterval(() => {
   });
 }, 2400);
 </script>
+
+<!-- FOOTER: CABLE POWERS TEXT -->
 <footer class="footer-section" id="footer">
-  <p class="footer-bg-label">Available for freelance &amp; full-time work</p>
-
-  <!-- Orange accent squares -->
-  <div class="footer-accent left"  id="fa-left"></div>
-  <div class="footer-accent right" id="fa-right"></div>
-
-  <div class="footer-cable-wrap">
-    <!-- Big name that lights up -->
-    <div class="footer-name" id="footer-name">Arun Eswaran</div>
-
-    <!-- Spark dot at connection point -->
-    <div class="cable-spark" id="cable-spark"></div>
-
-    <!-- Cable SVG: drawn from bottom upward, connector tip touches the text baseline -->
-    <svg class="footer-cable-svg" viewBox="0 0 80 220" height="220" id="cable-svg">
-      <!-- Plug head (connector tip at top touching the text) -->
-      <rect class="cable-plug" id="cable-plug" x="28" y="4" width="24" height="14" rx="3"/>
-      <!-- Notch lines on plug -->
-      <line x1="33" y1="8" x2="33" y2="16" stroke="#222" stroke-width="2" opacity="0"/>
-      <line x1="40" y1="8" x2="40" y2="16" stroke="#222" stroke-width="2" opacity="0"/>
-      <line x1="47" y1="8" x2="47" y2="16" stroke="#222" stroke-width="2" opacity="0"/>
-      <!-- Cable wire path: starts at bottom (220) goes straight up to plug (18) -->
-      <path class="cable-wire" id="cable-wire"
-        d="M 40 220
-           C 40 180, 40 160, 40 140
-           C 40 110, 30 95, 40 80
-           C 50 65, 40 45, 40 18"
-      />
-    </svg>
+  <div class="footer-text-wrap">
+    <div class="footer-word" id="footer-word">
+      <span class="footer-letter" id="fl-P">P</span>
+      <span class="footer-letter" id="fl-o">o</span>
+      <span class="footer-letter" id="fl-r">r</span>
+      <span class="footer-letter" id="fl-t">t</span>
+      <span class="footer-letter" id="fl-f">f</span>
+      <span class="footer-letter" id="fl-o2">o</span>
+      <span class="footer-letter" id="fl-l">l</span>
+      <span class="footer-letter" id="fl-i">i</span>
+      <span class="footer-letter" id="fl-o3">o</span>
+    </div>
+    <div class="footer-sub" id="footer-sub">Arun Eswaran &nbsp;&mdash;&nbsp; UI/UX &amp; Developer</div>
   </div>
 
-  <p class="footer-sub">© 2025 Arun Eswaran &nbsp;·&nbsp; All rights reserved</p>
+  <!-- Cable anchored below the P -->
+  <div class="cable-root" id="cable-root">
+    <svg class="cable-svg" id="cable-svg" viewBox="0 0 40 320" height="320" preserveAspectRatio="none">
+      <!-- cable body -->
+      <rect x="16" y="40" width="8" height="280" fill="#2a2a2a" rx="2"/>
+      <!-- connector head -->
+      <rect x="10" y="20" width="20" height="22" fill="#2a2a2a" rx="3"/>
+      <!-- connector pin slot -->
+      <rect x="14" y="24" width="12" height="4" fill="#111" rx="1"/>
+      <rect x="14" y="30" width="12" height="4" fill="#111" rx="1"/>
+      <!-- connector tip -->
+      <rect x="17" y="10" width="6" height="12" fill="#333" rx="1"/>
+      <rect x="18" y="6" width="4" height="6" fill="#3a3a3a" rx="1"/>
+      <!-- contact point dot -->
+      <circle cx="20" cy="6" r="2" fill="#555" id="cable-dot"/>
+    </svg>
+  </div>
 </footer>
 
 <script>
+/* ── FOOTER CABLE ANIMATION ─────────────────────────── */
 (function() {
-  const wire    = document.getElementById('cable-wire');
-  const plug    = document.getElementById('cable-plug');
-  const name    = document.getElementById('footer-name');
-  const spark   = document.getElementById('cable-spark');
-  const faL     = document.getElementById('fa-left');
-  const faR     = document.getElementById('fa-right');
-  let   fired   = false;
+  const footer   = document.getElementById('footer');
+  const cableRoot= document.getElementById('cable-root');
+  const cableSvg = document.getElementById('cable-svg');
+  const dot      = document.getElementById('cable-dot');
+  const letters  = Array.from(document.querySelectorAll('.footer-letter'));
+  const sub      = document.getElementById('footer-sub');
 
-  function runCableAnimation() {
-    if (fired) return;
-    fired = true;
+  // Total travel: cable starts 320px below footer bottom, rises to touch P
+  const TRAVEL   = 320;
+  let triggered  = false;
+  let rafId      = null;
+  let progress   = 0; // 0 → 1
 
-    // 1. Draw the cable
-    wire.classList.add('animate');
-
-    // 2. Show plug head when wire nearly reaches top
-    setTimeout(() => {
-      plug.classList.add('visible');
-      plug.style.fill = '#666';
-
-      // 3. Spark flash at connection
-      spark.classList.add('flash');
-
-      // 4. Light up the name text
-      name.classList.add('lit');
-
-      // 5. Accent squares pop in
-      faL.classList.add('show');
-      faR.classList.add('show');
-
-      // 6. Wire brightens to match lit state
-      wire.style.stroke = '#bbb';
-      plug.style.fill = '#999';
-    }, 1350);
-  }
-
-  // Trigger when footer scrolls into view
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Small delay so user can see the start
-        setTimeout(runCableAnimation, 300);
-        observer.disconnect();
+  // Observe footer entering viewport
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !triggered) {
+        triggered = true;
+        obs.disconnect();
+        setTimeout(startAnimation, 300);
       }
     });
   }, { threshold: 0.35 });
+  obs.observe(footer);
 
-  observer.observe(document.getElementById('footer'));
+  function startAnimation() {
+    const startTime = performance.now();
+    const duration  = 1400; // ms for cable to fully rise
+
+    function tick(now) {
+      progress = Math.min((now - startTime) / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      // Move cable upward: translate from TRAVEL→0
+      const offset = TRAVEL * (1 - eased);
+      cableRoot.style.transform = `translateX(-50%) translateY(${offset}px)`;
+
+      // At progress ~0.85 cable touches → light letters one by one
+      if (progress >= 0.85) {
+        const litFrac = (progress - 0.85) / 0.15; // 0→1 in last 15%
+        const litCount = Math.round(litFrac * letters.length);
+        letters.forEach((l, i) => {
+          if (i < litCount) l.classList.add('lit');
+        });
+        // connector tip glows white on contact
+        dot.setAttribute('fill', '#fff');
+        cableSvg.querySelectorAll('rect').forEach(r => {
+          const base = r.getAttribute('fill');
+          if (base !== '#111') r.setAttribute('fill', '#555');
+        });
+      }
+
+      if (progress >= 1) {
+        // All letters lit, connector bright
+        letters.forEach(l => l.classList.add('lit'));
+        sub.classList.add('lit');
+        return;
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  // Reposition cable anchor under the P letter horizontally
+  function alignCable() {
+    const pEl = document.getElementById('fl-P');
+    if (!pEl) return;
+    const footerRect = footer.getBoundingClientRect();
+    const pRect      = pEl.getBoundingClientRect();
+    const pCenter    = pRect.left + pRect.width / 2 - footerRect.left;
+    cableRoot.style.left = pCenter + 'px';
+  }
+  alignCable();
+  window.addEventListener('resize', alignCable);
 })();
 </script>
 
