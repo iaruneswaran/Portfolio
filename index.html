@@ -576,6 +576,175 @@
       font-size: 32px;
     }
   }
+
+  /* ── FOOTER SECTION ───────────────────────────────── */
+  .footer-section {
+    position: relative;
+    padding: 120px 0;
+    background: #050505;
+    border-top: 1px solid var(--panel-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 5;
+    height: 400px;
+    user-select: none;
+  }
+
+  .footer-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-faded-text {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-dim);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .footer-glow-text {
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    color: #1C1C1C;
+    animation: textGlowCycle 8s infinite ease-in-out;
+  }
+
+  .p-letter {
+    position: relative;
+    display: inline-block;
+  }
+
+  .footer-cable-wrapper {
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+    animation: plugInCycle 8s infinite ease-in-out;
+  }
+
+  .cable-connector {
+    width: 10px;
+    height: 14px;
+    background: #242424;
+    border-radius: 2px;
+    border: 1px solid #333;
+    position: relative;
+  }
+
+  .cable-connector::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 3px;
+    width: 2px;
+    height: 5px;
+    background: #444;
+    border-radius: 1px;
+  }
+
+  .cable-wire {
+    width: 2px;
+    height: 300px;
+    background: linear-gradient(180deg, #242424 0%, #0A0A0A 100%);
+  }
+
+  .footer-decorator {
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .footer-decorator.left {
+    left: 20%;
+  }
+
+  .footer-decorator.right {
+    right: 20%;
+  }
+
+  .decorator-line {
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+  }
+
+  .decorator-square {
+    width: 12px;
+    height: 12px;
+    background: var(--orange);
+    margin-top: 8px;
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.4);
+  }
+
+  @keyframes plugInCycle {
+    0%, 15% {
+      transform: translate(-50%, 60px);
+    }
+    22%, 75% {
+      transform: translate(-50%, 0);
+    }
+    82%, 100% {
+      transform: translate(-50%, 60px);
+    }
+  }
+
+  @keyframes textGlowCycle {
+    0%, 19% {
+      color: #1C1C1C;
+      text-shadow: none;
+    }
+    20% {
+      color: white;
+      text-shadow: 0 0 10px #fff, 0 0 25px #fff, 0 0 35px var(--orange);
+    }
+    21%, 74% {
+      color: white;
+      text-shadow: 0 0 8px #fff, 0 0 20px #fff, 0 0 30px var(--orange);
+    }
+    75% {
+      color: #A0A0A0;
+      text-shadow: 0 0 4px #fff, 0 0 10px var(--orange);
+    }
+    76%, 100% {
+      color: #1C1C1C;
+      text-shadow: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-section {
+      height: 300px;
+      padding: 80px 0;
+    }
+    .footer-glow-text {
+      font-size: 56px;
+    }
+    .footer-faded-text {
+      font-size: 20px;
+    }
+    .footer-decorator {
+      display: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -586,8 +755,8 @@
   </div>
   <ul class="nav-links">
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="#hero">About</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-actions">
     <a href="mailto:iaruneswar@gmail.com" class="btn-mail">
@@ -600,7 +769,7 @@
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="hero">
   <!-- solid bg left of grid -->
   <div class="hero-bg-left"></div>
   <!-- soft fade at left edge of grid -->
@@ -910,6 +1079,31 @@
     </div>
   </div>
 </section>
+
+<footer class="footer-section" id="contact">
+  <!-- Left Decorator -->
+  <div class="footer-decorator left">
+    <div class="decorator-line"></div>
+    <div class="decorator-square"></div>
+  </div>
+
+  <!-- Main Animation Text -->
+  <div class="footer-text-wrapper">
+    <div class="footer-faded-text">Less Isn't</div>
+    <div class="footer-glow-text">
+      Em<span class="p-letter">p<div class="footer-cable-wrapper">
+        <div class="cable-connector"></div>
+        <div class="cable-wire"></div>
+      </div></span>ty
+    </div>
+  </div>
+
+  <!-- Right Decorator -->
+  <div class="footer-decorator right">
+    <div class="decorator-line"></div>
+    <div class="decorator-square"></div>
+  </div>
+</footer>
 
 <script>
 const G = id => document.getElementById(id);
