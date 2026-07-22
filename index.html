@@ -31,7 +31,7 @@
   body {
     background: var(--bg);
     color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -503,6 +503,7 @@
   }
 
   .project-title {
+    font-family: 'Mustica Pro', 'Inter', sans-serif;
     font-size: 22px;
     font-weight: 700;
     color: white;
@@ -575,82 +576,6 @@
     .section-title {
       font-size: 32px;
     }
-  }
-  /* ── FOOTER CABLE ANIMATION ───────────────────────── */
-  .footer-section {
-    position: relative;
-    background: #080808;
-    border-top: 1px solid var(--panel-border);
-    overflow: hidden;
-    height: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .footer-text-wrap {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    margin-bottom: 0;
-  }
-
-  .footer-word {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(52px, 9vw, 110px);
-    font-weight: 800;
-    letter-spacing: -4px;
-    line-height: 1;
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    margin-bottom: 0;
-  }
-
-  .footer-letter {
-    color: #272727;
-    transition: color 0.25s ease;
-    display: inline-block;
-  }
-
-  .footer-letter.lit {
-    color: #ffffff;
-  }
-
-  .footer-sub {
-    margin-top: 18px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #333;
-    text-transform: uppercase;
-    transition: color 0.5s ease;
-  }
-
-  .footer-sub.lit {
-    color: #666;
-  }
-
-  /* cable container — top set by JS to P letter bottom edge */
-  .cable-root {
-    position: absolute;
-    top: 0;   /* overridden by JS */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .cable-svg {
-    width: 40px;
-    overflow: visible;
-  }
-
-  @media (max-width: 600px) {
-    .footer-section { height: 340px; }
-    .footer-word { font-size: 52px; letter-spacing: -2px; }
   }
 </style>
 </head>
@@ -1200,115 +1125,5 @@ setInterval(() => {
   });
 }, 2400);
 </script>
-
-<!-- FOOTER: CABLE POWERS TEXT -->
-<footer class="footer-section" id="footer">
-  <div class="footer-text-wrap">
-    <div class="footer-word" id="footer-word">
-      <span class="footer-letter" id="fl-P">P</span>
-      <span class="footer-letter" id="fl-o">o</span>
-      <span class="footer-letter" id="fl-r">r</span>
-      <span class="footer-letter" id="fl-t">t</span>
-      <span class="footer-letter" id="fl-f">f</span>
-      <span class="footer-letter" id="fl-o2">o</span>
-      <span class="footer-letter" id="fl-l">l</span>
-      <span class="footer-letter" id="fl-i">i</span>
-      <span class="footer-letter" id="fl-o3">o</span>
-    </div>
-    <div class="footer-sub" id="footer-sub">Arun Eswaran &nbsp;&mdash;&nbsp; UI/UX &amp; Developer</div>
-  </div>
-
-  <!-- Cable anchored below the P -->
-  <div class="cable-root" id="cable-root">
-    <svg class="cable-svg" id="cable-svg" viewBox="0 0 40 320" height="320">
-      <!-- solid uniform cable body -->
-      <rect x="13" y="0" width="14" height="320" fill="#888"/>
-      <!-- horizontal line divider -->
-      <rect x="13" y="45" width="14" height="2" fill="#555"/>
-    </svg>
-  </div>
-</footer>
-
-<script>
-/* ── FOOTER CABLE ANIMATION ─────────────────────────── */
-(function() {
-  const footer   = document.getElementById('footer');
-  const cableRoot= document.getElementById('cable-root');
-  const cableSvg = document.getElementById('cable-svg');
-  const dot      = document.getElementById('cable-dot');
-  const letters  = Array.from(document.querySelectorAll('.footer-letter'));
-  const sub      = document.getElementById('footer-sub');
-
-  // Total travel: cable starts 320px below footer bottom, rises to touch P
-  const TRAVEL   = 320;
-  let triggered  = false;
-  let rafId      = null;
-  let progress   = 0; // 0 → 1
-
-  // Observe footer entering viewport
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !triggered) {
-        triggered = true;
-        obs.disconnect();
-        setTimeout(startAnimation, 300);
-      }
-    });
-  }, { threshold: 0.35 });
-  obs.observe(footer);
-
-  function startAnimation() {
-    const startTime = performance.now();
-    const duration  = 1400; // ms for cable to fully rise
-
-    function tick(now) {
-      progress = Math.min((now - startTime) / duration, 1);
-      // Ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-
-      // Move cable upward: translate from TRAVEL→0
-      const offset = TRAVEL * (1 - eased);
-      cableRoot.style.transform = `translateX(-50%) translateY(${offset}px)`;
-
-      // At progress ~0.85 cable touches → light letters one by one
-      if (progress >= 0.85) {
-        const litFrac = (progress - 0.85) / 0.15; // 0→1 in last 15%
-        const litCount = Math.round(litFrac * letters.length);
-        letters.forEach((l, i) => {
-          if (i < litCount) l.classList.add('lit');
-        });
-      }
-
-      if (progress >= 1) {
-        // All letters lit
-        letters.forEach(l => l.classList.add('lit'));
-        sub.classList.add('lit');
-        return;
-      }
-      rafId = requestAnimationFrame(tick);
-    }
-    rafId = requestAnimationFrame(tick);
-  }
-
-  // Reposition cable so its top edge aligns with the BOTTOM of the P letter
-  function alignCable() {
-    const pEl = document.getElementById('fl-P');
-    if (!pEl) return;
-    const footerRect = footer.getBoundingClientRect();
-    const pRect      = pEl.getBoundingClientRect();
-
-    // Horizontal: center of P
-    const pCenter = pRect.left + pRect.width / 2 - footerRect.left;
-    cableRoot.style.left = pCenter + 'px';
-
-    // Vertical: cable top = P bottom edge (relative to footer)
-    const pBottom = pRect.bottom - footerRect.top;
-    cableRoot.style.top = pBottom + 'px';
-  }
-  alignCable();
-  window.addEventListener('resize', alignCable);
-})();
-</script>
-
 </body>
 </html>
