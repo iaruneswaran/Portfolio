@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arun Eswaran</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FF6B00;
+    --red: #FF4444;
+    --yellow: #C8A84B;
+    --text-bright: #D4D4D4;
+    --text-primary: #A0A0A0;
+    --text-secondary: #6A6A6A;
+    --text-dim: #3C3C3C;
+    --bg: #0A0A0A;
+    --panel-bg: #0D0D0D;
+    --panel-border: #1C1C1C;
+    --dot-active: #9A9A9A;
+    --dot-warn: #C8A84B;
+    --dot-err: #FF4444;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 60px;
+    background: rgba(10,10,10,0.97);
+    border-bottom: 1px solid var(--panel-border);
+    backdrop-filter: blur(8px);
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 500; font-size: 15px; letter-spacing: -0.3px; color: white;
+  }
+  .logo-icon {
+    width: 22px; height: 22px; background: white; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon svg { width: 14px; height: 14px; }
+
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: white; text-decoration: none;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.5px; transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 0.8; }
+
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+  .btn-mail {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+  }
+  .btn-mail:hover {
+    opacity: 0.8;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 60px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  /* Terminal grid: starts 25% from left, fills to right edge and full height — no blank space */
+  .terminal-grid {
+    position: absolute;
+    top: 60px; right: 0; bottom: 0; left: 25%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--panel-border);
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0.85;
+  }
+
+  /* Soft left-edge fade: from solid bg → transparent, covering the first ~18% of the grid */
+  .terminal-fade {
+    position: absolute;
+    top: 60px; bottom: 0;
+    left: 25%;
+    width: 20%;
+    background: linear-gradient(90deg,
+      rgba(10,10,10,1)   0%,
+      rgba(10,10,10,0.85) 40%,
+      rgba(10,10,10,0.3) 75%,
+      transparent        100%);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Solid bg left of grid — no gap, no blank */
+  .hero-bg-left {
+    position: absolute;
+    top: 60px; left: 0; bottom: 0;
+    width: 25%;
+    background: var(--bg);
+    z-index: 2;
+  }
+
+  /* Hero left - Profile card styling */
+  .hero-left {
+    position: absolute;
+    top: 60px; left: 0; bottom: 0;
+    width: 25%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    pointer-events: auto;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+    margin-top: -80px;
+  }
+
+  .avatar-wrapper {
+    position: relative;
+    margin-bottom: 28px;
+    display: inline-block;
+  }
+
+  .avatar {
+    width: 160px;
+    height: 240px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .status-badge {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0D0D0D;
+    border: 1px solid var(--panel-border);
+    color: white;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00E676;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #00E676;
+  }
+
+  .profile-name {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .profile-role {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--orange);
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+
+  .profile-divider {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background: var(--panel-border);
+    margin-bottom: 24px;
+  }
+
+  .profile-bio {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+    max-width: 280px;
+  }
+
+  .profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .profile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #0D0D0D;
+    color: var(--text-bright);
+    border: 1px solid var(--panel-border);
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .profile-btn:hover {
+    background: #141414;
+    border-color: var(--text-secondary);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .t-panel {
+    background: var(--panel-bg); padding: 13px 15px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    overflow: hidden; position: relative; min-height: 0;
+  }
+
+  .t-panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 9px; padding-bottom: 7px;
+    border-bottom: 1px solid var(--panel-border);
+  }
+
+  .t-panel-title {
+    font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--text-dim); font-weight: 700; text-transform: uppercase;
+  }
+
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-active { background: var(--dot-active); }
+  .dot-warn   { background: var(--dot-warn); }
+  .dot-err    { background: var(--dot-err); box-shadow: 0 0 5px #FF444455; }
+
+  /* ALL LINES — pure grey palette */
+  .t-line { line-height: 1.75; white-space: nowrap; overflow: hidden; }
+  .t-line.cmd  { color: var(--text-bright); }
+  .t-line.ok   { color: var(--text-primary); }
+  .t-line.err  { color: var(--dot-err); }
+  .t-line.warn { color: var(--dot-warn); }
+  .t-line.info { color: var(--text-secondary); }
+  .t-line.dim  { color: var(--text-dim); }
+
+  /* Blinking block cursor for typewriter panels */
+  .t-cursor {
+    display: inline-block;
+    width: 6px; height: 0.85em;
+    background: var(--text-secondary);
+    vertical-align: text-bottom;
+    margin-left: 1px;
+    animation: cursorBlink 0.75s step-end infinite;
+  }
+  @keyframes cursorBlink { 50% { opacity: 0; } }
+
+  /* fade-in for non-typewriter lines */
+  .fade-line {
+    opacity: 0;
+    animation: fadeIn 0.2s forwards;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  /* Scan sweep on selected typewriter panels */
+  .scan-sweep {
+    position: absolute; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--text-dim) 50%, transparent 100%);
+    opacity: 0.2; pointer-events: none;
+    animation: sweepDown 5s linear infinite;
+  }
+  @keyframes sweepDown { 0% { top: 28px; } 100% { top: 105%; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    Portfolio
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="mailto:arun@example.com" class="btn-mail">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      MAIL
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <!-- solid bg left of grid -->
+  <div class="hero-bg-left"></div>
+  <!-- soft fade at left edge of grid -->
+  <div class="terminal-fade"></div>
+
+  <!-- Profile Card overlaid on top -->
+  <div class="hero-left">
+    <div class="profile-container">
+      <div class="avatar-wrapper">
+        <img class="avatar" src="Profile.png" alt="Arun Eswaran" />
+      </div>
+      
+      <h2 class="profile-name">Arun Eswaran</h2>
+      <div class="profile-role">UI/UX Designer & Developer</div>
+      
+      <hr class="profile-divider" />
+      
+      <p class="profile-bio">
+        Crafting performant web architectures and immersive interactive interfaces. Focused on clean code and intuitive design.
+      </p>
+      
+      <div class="profile-links">
+        <a href="https://github.com" target="_blank" class="profile-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="profile-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="mailto:arun@example.com" class="profile-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- terminal grid: starts at 25%, 3 cols × 4 rows, fills to bottom-right -->
+  <div class="terminal-grid">
+    <div class="t-panel" id="p1">
+      <div class="scan-sweep"></div>
+      <div class="t-panel-header"><span class="t-panel-title">AGENT-01 // REFACTOR</span><span class="dot dot-active"></span></div>
+      <div id="p1-lines"></div>
+    </div>
+    <div class="t-panel" id="p2">
+      <div class="t-panel-header"><span class="t-panel-title">AGENT-02 // MIGRATE</span><span class="dot dot-active"></span></div>
+      <div id="p2-lines"></div>
+    </div>
+    <div class="t-panel" id="p3">
+      <div class="t-panel-header"><span class="t-panel-title">AGENT-03 // TEST-GEN</span><span class="dot dot-active"></span></div>
+      <div id="p3-lines"></div>
+    </div>
+
+    <div class="t-panel" id="p4">
+      <div class="t-panel-header"><span class="t-panel-title">AGENT-04 // DEPLOY</span><span class="dot dot-active"></span></div>
+      <div id="p4-lines"></div>
+    </div>
+    <div class="t-panel" id="p5">
+      <div class="scan-sweep"></div>
+      <div class="t-panel-header"><span class="t-panel-title">SYSTEM // STATUS</span><span class="dot dot-active"></span></div>
+      <div id="p5-lines"></div>
+    </div>
+    <div class="t-panel" id="p6">
+      <div class="t-panel-header"><span class="t-panel-title">AGENT-05 // REVIEW</span><span class="dot dot-warn"></span></div>
+      <div id="p6-lines"></div>
+    </div>
+
+    <div class="t-panel" id="p7">
+      <div class="t-panel-header"><span class="t-panel-title">AGENT-07 // PERF</span><span class="dot dot-active"></span></div>
+      <div id="p7-lines"></div>
+    </div>
+    <div class="t-panel" id="p8">
+      <div class="t-panel-header"><span class="t-panel-title">SYSTEM // EVENT LOG</span><span class="dot dot-active"></span></div>
+      <div id="p8-lines"></div>
+    </div>
+    <div class="t-panel" id="p9">
+      <div class="t-panel-header"><span class="t-panel-title">SYSTEM // TASK QUEUE</span><span class="dot dot-active"></span></div>
+      <div id="p9-lines"></div>
+    </div>
+
+    <div class="t-panel" id="p10">
+      <div class="t-panel-header"><span class="t-panel-title">AGENT-11 // ROLLBACK</span><span class="dot dot-err"></span></div>
+      <div id="p10-lines"></div>
+    </div>
+    <div class="t-panel" id="p11">
+      <div class="t-panel-header"><span class="t-panel-title">AGENT-06 // DOCS</span><span class="dot dot-active"></span></div>
+      <div id="p11-lines"></div>
+    </div>
+    <div class="t-panel" id="p12">
+      <div class="t-panel-header"><span class="t-panel-title">SYSTEM // NETWORK</span><span class="dot dot-active"></span></div>
+      <div id="p12-lines"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+const G = id => document.getElementById(id);
+
+const panelData = {
+  p1: { type:'typewriter', lines:[
+    { cls:'cmd',  t:'> blackbox agent run --task refactor-auth' },
+    { cls:'info', t:'[LOAD] auth.service.ts .............' },
+    { cls:'ok',   t:'[SCAN] 847 lines analyzed' },
+    { cls:'ok',   t:'[REFACTOR] Splitting monolith...' },
+    { cls:'info', t:'[WRITE] auth.controller.ts' },
+    { cls:'info', t:'[WRITE] auth.middleware.ts' },
+    { cls:'ok',   t:'[DONE] 3 files created' },
+    { cls:'dim',  t:'──────────────────────────' },
+    { cls:'info', t:'[LOAD] user.service.ts ............' },
+    { cls:'ok',   t:'[SCAN] 1,203 lines analyzed' },
+  ]},
+  p2: { type:'fade', lines:[
+    { cls:'cmd',  t:'> blackbox agent run --task db-migration' },
+    { cls:'info', t:'[CONN] Connecting to schema registry' },
+    { cls:'ok',   t:'[CONN] Registry reached' },
+    { cls:'info', t:'[DIFF] Comparing schemas...' },
+    { cls:'warn', t:'[DIFF] 14 breaking changes found' },
+    { cls:'ok',   t:'[GEN] migration_v2.41.sql' },
+    { cls:'ok',   t:'[TEST] Dry run passed' },
+    { cls:'dim',  t:'CPU: 12%  MEM: 3.2GB / 16GB' },
+    { cls:'dim',  t:'Active agents: 4  Queue: 0' },
+  ]},
+  p3: { type:'typewriter', lines:[
+    { cls:'cmd',  t:'> blackbox agent run --task generate-tests' },
+    { cls:'info', t:'[SCAN] Uncovered functions: 23' },
+    { cls:'ok',   t:'[GEN] tests/auth.test.ts (8 cases)' },
+    { cls:'ok',   t:'[GEN] tests/billing.test.ts (6 cases)' },
+    { cls:'ok',   t:'[GEN] tests/users.test.ts (9 cases)' },
+    { cls:'ok',   t:'[RUN] All 23 tests passing' },
+    { cls:'dim',  t:'Coverage: 87.3% -> 94.1%' },
+  ]},
+  p4: { type:'fade', lines:[
+    { cls:'cmd',  t:'> blackbox agent run --task deploy-staging' },
+    { cls:'info', t:'[BUILD] next build .............' },
+    { cls:'ok',   t:'[BUILD] ................... OK' },
+    { cls:'ok',   t:'[LINT] 0 errors, 0 warnings' },
+    { cls:'ok',   t:'[TYPE] tsc --noEmit ........ OK' },
+    { cls:'ok',   t:'[PUSH] Image pushed to registry' },
+    { cls:'ok',   t:'[DEPLOY] staging.app.io live' },
+  ]},
+  p5: { type:'typewriter', lines:[
+    { cls:'cmd',  t:'> blackbox status --all' },
+    { cls:'info', t:'[SYS] Orchestrator: v2.4.1' },
+    { cls:'ok',   t:'[API] Anthropic Claude ......... OK' },
+    { cls:'ok',   t:'[API] OpenAI Codex ............. OK' },
+    { cls:'ok',   t:'[API] Blackbox Core ............ OK' },
+    { cls:'ok',   t:'[DB] PostgreSQL ............... OK' },
+    { cls:'ok',   t:'[CACHE] Redis .................. OK' },
+    { cls:'dim',  t:'Uptime: 99.97%  SLA: 99.9%' },
+  ]},
+  p6: { type:'fade', lines:[
+    { cls:'cmd',  t:'> blackbox agent run --task code-review' },
+    { cls:'info', t:'[LOAD] PR #247 -- 14 files changed' },
+    { cls:'ok',   t:'[SCAN] Security patterns ........ OK' },
+    { cls:'warn', t:'[SCAN] Performance anti-patterns: 1' },
+    { cls:'info', t:'[COMMENT] Line 847: N+1 query' },
+    { cls:'ok',   t:'[SUGGEST] Use batch loading' },
+    { cls:'dim',  t:'Review score: 94 / 100' },
+  ]},
+  p7: { type:'fade', lines:[
+    { cls:'cmd',  t:'> blackbox agent run --task perf-optimize' },
+    { cls:'ok',   t:'[BENCH] Baseline: 342ms p95' },
+    { cls:'info', t:'[SCAN] Bundle analysis...' },
+    { cls:'warn', t:'[FOUND] 3 heavy components' },
+    { cls:'ok',   t:'[FIX] Lazy load applied' },
+    { cls:'ok',   t:'[FIX] Tree-shaking enabled' },
+    { cls:'ok',   t:'[BENCH] After: 94ms p95  down 72%' },
+  ]},
+  p8: { type:'typewriter', lines:[
+    { cls:'info', t:'[18:01:04] Agent-01 started' },
+    { cls:'info', t:'[18:01:04] Agent-02 started' },
+    { cls:'info', t:'[18:01:05] Agent-03 started' },
+    { cls:'ok',   t:'[18:01:08] Agent-01 DONE' },
+    { cls:'ok',   t:'[18:01:11] Agent-03 DONE' },
+    { cls:'info', t:'[18:01:12] Agent-05 started' },
+    { cls:'ok',   t:'[18:01:15] Agent-02 DONE' },
+    { cls:'info', t:'[18:01:16] Agent-06 started' },
+    { cls:'ok',   t:'[18:01:19] Agent-04 DONE' },
+  ]},
+  p9: { type:'fade', lines:[
+    { cls:'cmd',  t:'> blackbox queue status' },
+    { cls:'ok',   t:'[QUEUE] Active tasks: 4 / 8 slots' },
+    { cls:'ok',   t:'[WAIT] 0 pending' },
+    { cls:'dim',  t:'[HIST] 247 tasks today' },
+    { cls:'dim',  t:'[AVG] 8.3s per task' },
+    { cls:'ok',   t:'[RATE] 0 failures (24h)' },
+    { cls:'dim',  t:'──────────────────────────' },
+    { cls:'ok',   t:'[QUOTA] 11,247 / 50,000 used' },
+  ]},
+  p10: { type:'fade', lines:[
+    { cls:'cmd',  t:'> blackbox agent run --task rollback-prod' },
+    { cls:'err',  t:'[ERR] deploy-v2.42.0 health check FAILED' },
+    { cls:'info', t:'[FETCH] Last stable: deploy-v2.41.0' },
+    { cls:'warn', t:'[DIFF] 3 commits to revert' },
+    { cls:'info', t:'[ROLLBACK] Applying v2.41.0...' },
+    { cls:'ok',   t:'[HEALTH] prod.app.io: 200 OK' },
+    { cls:'ok',   t:'[DONE] Rollback complete in 23s' },
+  ]},
+  p11: { type:'typewriter', lines:[
+    { cls:'cmd',  t:'> blackbox agent run --task update-docs' },
+    { cls:'info', t:'[SCAN] 7 undocumented exports found' },
+    { cls:'ok',   t:'[GEN] docs/api-reference.md updated' },
+    { cls:'ok',   t:'[GEN] docs/auth-guide.md created' },
+    { cls:'ok',   t:'[GEN] docs/webhooks.md created' },
+    { cls:'ok',   t:'[PUSH] Docs deployed' },
+    { cls:'dim',  t:'Pages updated: 14' },
+  ]},
+  p12: { type:'fade', lines:[
+    { cls:'cmd',  t:'> blackbox net status --verbose' },
+    { cls:'ok',   t:'[EDGE] us-east-1 ........... 12ms' },
+    { cls:'ok',   t:'[EDGE] eu-west-1 ........... 34ms' },
+    { cls:'ok',   t:'[EDGE] ap-southeast-1 ...... 89ms' },
+    { cls:'dim',  t:'──────────────────────────' },
+    { cls:'ok',   t:'[CDN] Cache hit rate: 94.2%' },
+    { cls:'ok',   t:'[TLS] All certs valid' },
+    { cls:'dim',  t:'Bandwidth: 2.3 TB / 24h' },
+  ]},
+};
+
+/* ── TYPEWRITER ─────────────────────────────────────── */
+function typewriterPanel(containerId, lines) {
+  const container = G(containerId);
+  if (!container) return;
+  let li = 0;
+
+  function nextLine() {
+    if (li >= lines.length) {
+      setTimeout(() => { container.innerHTML = ''; li = 0; nextLine(); }, 2800);
+      return;
+    }
+    const { cls, t } = lines[li++];
+    const div = document.createElement('div');
+    div.className = `t-line ${cls}`;
+
+    const cursor = document.createElement('span');
+    cursor.className = 't-cursor';
+    div.appendChild(cursor);
+    container.appendChild(div);
+
+    let ci = 0;
+    const speed = cls === 'cmd' ? 36 : 20;
+    function tick() {
+      if (ci < t.length) {
+        cursor.insertAdjacentText('beforebegin', t[ci++]);
+        setTimeout(tick, speed + Math.random() * 18);
+      } else {
+        cursor.remove();
+        setTimeout(nextLine, cls === 'cmd' ? 200 : 70);
+      }
+    }
+    tick();
+  }
+  nextLine();
+}
+
+/* ── FADE PANEL ─────────────────────────────────────── */
+function fadeLine(data, delay) {
+  const div = document.createElement('div');
+  div.className = `t-line ${data.cls} fade-line`;
+  div.style.animationDelay = `${delay}ms`;
+  div.textContent = data.t;
+  return div;
+}
+
+function fadePanel(containerId, lines) {
+  const c = G(containerId);
+  if (!c) return;
+  lines.forEach((l, i) => c.appendChild(fadeLine(l, i * 105)));
+}
+
+function refreshFade(containerId, lines) {
+  const c = G(containerId);
+  if (!c) return;
+  const all = c.querySelectorAll('.t-line');
+  if (all.length >= 9) {
+    all[0].remove();
+    const el = fadeLine(lines[Math.floor(Math.random() * lines.length)], 0);
+    el.style.animationDelay = '0ms';
+    c.appendChild(el);
+  }
+}
+
+/* ── INIT ───────────────────────────────────────────── */
+const fadePanels = [];
+Object.entries(panelData).forEach(([id, cfg]) => {
+  const linesId = id + '-lines';
+  if (cfg.type === 'typewriter') {
+    typewriterPanel(linesId, cfg.lines);
+  } else {
+    fadePanel(linesId, cfg.lines);
+    fadePanels.push({ id: linesId, lines: cfg.lines });
+  }
+});
+
+setInterval(() => {
+  fadePanels.forEach(({ id, lines }) => {
+    if (Math.random() > 0.45) refreshFade(id, lines);
+  });
+}, 1400);
+
+/* Dot pulse */
+setInterval(() => {
+  document.querySelectorAll('.dot-active').forEach(d => {
+    d.style.opacity = '0.2';
+    setTimeout(() => { d.style.opacity = '1'; }, 380);
+  });
+}, 2400);
+</script>
+</body>
+</html>
