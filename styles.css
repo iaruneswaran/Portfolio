@@ -162,7 +162,7 @@ nav {
   text-align: center;
   width: 100%;
   max-width: 320px;
-  margin-top: -80px;
+  margin-top: -95px;
 }
 
 .avatar-wrapper {
@@ -250,14 +250,15 @@ nav {
 .profile-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
   background: #0D0D0D;
   color: var(--text-bright);
   border: 1px solid var(--panel-border);
   padding: 12px 16px;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   border-radius: 4px;
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
@@ -710,7 +711,7 @@ nav {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 180px 180px 1fr;
   gap: 48px;
   margin-bottom: 60px;
 }
@@ -719,6 +720,8 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: flex-end;
+  text-align: right;
 }
 
 .footer-logo {
@@ -781,9 +784,7 @@ nav {
 .footer-col-right .footer-links-list {
   align-items: flex-end;
 }
-.footer-nav-col {
-  transform: translateX(20px);
-}
+
 
 
 /* ── ABOUT SECTION ────────────────────────── */
@@ -914,7 +915,8 @@ nav {
   .footer-col-right .footer-links-list {
     align-items: flex-start;
   }
-  .footer-nav-col {
-    transform: none;
+  .footer-brand {
+    align-items: flex-start;
+    text-align: left;
   }
 }
