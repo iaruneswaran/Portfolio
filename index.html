@@ -476,7 +476,7 @@ const panelData = {
     { cls:'ok',   t:'[RUN] All 23 tests passing' },
     { cls:'dim',  t:'Coverage: 87.3% -> 94.1%' },
   ]},
-  p4: { type:'fade', lines:[
+  p4: { type:'typewriter', lines:[
     { cls:'cmd',  t:'> blackbox agent run --task deploy-staging' },
     { cls:'info', t:'[BUILD] next build .............' },
     { cls:'ok',   t:'[BUILD] ................... OK' },
@@ -504,7 +504,7 @@ const panelData = {
     { cls:'ok',   t:'[SUGGEST] Use batch loading' },
     { cls:'dim',  t:'Review score: 94 / 100' },
   ]},
-  p7: { type:'fade', lines:[
+  p7: { type:'typewriter', lines:[
     { cls:'cmd',  t:'> blackbox agent run --task perf-optimize' },
     { cls:'ok',   t:'[BENCH] Baseline: 342ms p95' },
     { cls:'info', t:'[SCAN] Bundle analysis...' },
@@ -534,7 +534,7 @@ const panelData = {
     { cls:'dim',  t:'──────────────────────────' },
     { cls:'ok',   t:'[QUOTA] 11,247 / 50,000 used' },
   ]},
-  p10: { type:'fade', lines:[
+  p10: { type:'typewriter', lines:[
     { cls:'cmd',  t:'> blackbox agent run --task rollback-prod' },
     { cls:'err',  t:'[ERR] deploy-v2.42.0 health check FAILED' },
     { cls:'info', t:'[FETCH] Last stable: deploy-v2.41.0' },
