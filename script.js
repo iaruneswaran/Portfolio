@@ -140,12 +140,14 @@ function typewriterPanel(containerId, lines) {
     cursor.className = 't-cursor';
     div.appendChild(cursor);
     container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
 
     let ci = 0;
     const speed = cls === 'cmd' ? 36 : 20;
     function tick() {
       if (ci < t.length) {
         cursor.insertAdjacentText('beforebegin', t[ci++]);
+        container.scrollTop = container.scrollHeight;
         setTimeout(tick, speed + Math.random() * 18);
       } else {
         cursor.remove();
@@ -204,10 +206,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 1400);
 
   /* Dot pulse */
-  setInterval(() => {
-    document.querySelectorAll('.dot-active').forEach(d => {
+  function startBlinking(d) {
+    // Generate a unique interval for this dot between 2000ms and 3500ms
+    const interval = 2000 + Math.random() * 1500;
+    // Scale dim duration proportionally (~15% of interval)
+    const dimDuration = interval * 0.15;
+
+    function pulse() {
       d.style.opacity = '0.2';
-      setTimeout(() => { d.style.opacity = '1'; }, 380);
-    });
-  }, 2400);
+      setTimeout(() => { d.style.opacity = '1'; }, dimDuration);
+    }
+
+    // Start with a random delay so they don't all pulse at the same time initially
+    setTimeout(() => {
+      pulse();
+      setInterval(pulse, interval);
+    }, Math.random() * interval);
+  }
+
+  document.querySelectorAll('.dot-active').forEach(d => startBlinking(d));
 });
