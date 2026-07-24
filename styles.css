@@ -1019,6 +1019,9 @@ nav {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  .about-skills-box {
+    height: auto;
+  }
   .site-footer {
     padding: 60px 20px 30px 20px;
   }
