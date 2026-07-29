@@ -1,5 +1,22 @@
 const G = id => document.getElementById(id);
 
+/* ── LENIS SMOOTH PAGE SCROLL ── */
+if (typeof Lenis !== 'undefined') {
+  const lenis = new Lenis({
+    duration: 3.0,
+    easing: (t) => 1 - Math.pow(1 - t, 5),
+    smoothWheel: true,
+    wheelMultiplier: 0.9,
+    smoothTouch: false,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
+
 /* ── LOADER: remove from DOM after animation ends ── */
 const loader = document.getElementById('loader');
 if (loader) {
@@ -8,6 +25,42 @@ if (loader) {
       loader.remove();
     }
   });
+}
+
+/* ── SMOOTH CURSOR ── */
+const cursorEl = document.getElementById('custom-cursor');
+if (cursorEl) {
+  let mouseX = -100, mouseY = -100;
+  let cursorX = -100, cursorY = -100;
+  let isVisible = false;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!isVisible) {
+      isVisible = true;
+      cursorEl.style.opacity = '1';
+    }
+  });
+
+  document.addEventListener('mouseleave', () => {
+    cursorEl.style.opacity = '0';
+    isVisible = false;
+  });
+
+  document.addEventListener('mouseenter', () => {
+    cursorEl.style.opacity = '1';
+    isVisible = true;
+  });
+
+  function renderCursor() {
+    cursorX += (mouseX - cursorX) * 0.22;
+    cursorY += (mouseY - cursorY) * 0.22;
+
+    cursorEl.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+    requestAnimationFrame(renderCursor);
+  }
+  requestAnimationFrame(renderCursor);
 }
 
 const panelData = {
