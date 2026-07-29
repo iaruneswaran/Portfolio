@@ -10,12 +10,12 @@ body::-webkit-scrollbar {
   display: none;                /* Chrome, Safari, Opera */
 }
 
-/* Custom smooth mouse cursor — DESKTOP ONLY */
+/* Custom smooth mouse cursor — LAPTOPS & DESKTOPS */
 #custom-cursor {
   display: none;
 }
 
-@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+@media (min-width: 768px) {
   *, *::before, *::after, html, body, a, button, input {
     cursor: none !important;
   }
