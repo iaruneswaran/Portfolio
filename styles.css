@@ -150,11 +150,6 @@ nav {
   border-bottom: 1px solid var(--panel-border);
 }
 
-@media (max-width: 1200px) {
-  .nav-container {
-    padding: 0 20px;
-  }
-}
 
 .logo {
   display: flex; align-items: center; gap: 8px;
@@ -524,7 +519,7 @@ nav {
 
 @media (max-width: 820px) {
   .nav-container {
-    padding: 0 20px;
+    padding: 0 15px;
   }
   .nav-links {
     gap: 20px;
@@ -537,7 +532,7 @@ nav {
 
 @media (max-width: 600px) {
   .nav-container {
-    padding: 0 20px;
+    padding: 0 15px;
   }
   .logo {
     white-space: nowrap;
@@ -568,7 +563,7 @@ nav {
 
 @media (max-width: 380px) {
   .nav-container {
-    padding: 0 20px;
+    padding: 0 15px;
   }
   .nav-links {
     gap: 8px;
@@ -587,7 +582,7 @@ nav {
 .projects-section {
   position: relative;
   background: var(--bg);
-  padding: 100px 20px;
+  padding: 100px 0;
   z-index: 10;
 }
 
@@ -794,7 +789,7 @@ nav {
 .site-footer {
   position: relative;
   background: #0A0A0A;
-  padding: 80px 20px 40px 20px;
+  padding: 80px 0 40px 0;
   z-index: 10;
 }
 
@@ -944,7 +939,7 @@ nav {
 .about-section {
   position: relative;
   background: var(--bg);
-  padding: 100px 20px;
+  padding: 100px 0;
   z-index: 10;
 }
 
@@ -1092,15 +1087,7 @@ nav {
   border: 1px solid var(--panel-border);
   border-radius: 6px;
   padding: 28px;
-  height: auto;
-  min-height: 551px;
-}
-
-@media (max-width: 1024px) {
-  .about-skills-box {
-    height: auto;
-    min-height: 694.54px;
-  }
+  height: 551px;
 }
 
 .skills-box-header {
@@ -1132,8 +1119,11 @@ nav {
 }
 
 @media (max-width: 820px) {
+  .nav-container {
+    padding: 0 15px;
+  }
   .projects-section, .about-section {
-    padding: 60px 20px;
+    padding: 60px 15px;
   }
   .projects-grid, .about-grid {
     grid-template-columns: 1fr;
@@ -1143,7 +1133,7 @@ nav {
     height: auto;
   }
   .site-footer {
-    padding: 60px 20px 30px 20px;
+    padding: 60px 15px 30px 15px;
   }
   .footer-cta-block {
     flex-direction: column;
@@ -1168,5 +1158,21 @@ nav {
   .footer-brand {
     align-items: flex-start;
     text-align: left;
+  }
+}
+
+@media (max-width: 1200px) {
+  .nav-container {
+    padding: 0 15px;
+  }
+  .projects-section,
+  .about-section {
+    padding: 100px 15px;
+  }
+  .site-footer {
+    padding: 80px 15px 40px 15px;
+  }
+  .about-skills-box {
+    height: auto;
   }
 }
