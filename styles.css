@@ -10,12 +10,12 @@ body::-webkit-scrollbar {
   display: none;                /* Chrome, Safari, Opera */
 }
 
-/* Custom smooth mouse cursor — LAPTOPS & DESKTOPS */
+/* Custom smooth mouse cursor — DESKTOPS ONLY (> 1366px) */
 #custom-cursor {
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1367px) {
   *, *::before, *::after, html, body, a, button, input {
     cursor: none !important;
   }
@@ -148,6 +148,12 @@ nav {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--panel-border);
+}
+
+@media (max-width: 1200px) {
+  .nav-container {
+    padding: 0 20px;
+  }
 }
 
 .logo {
@@ -581,7 +587,7 @@ nav {
 .projects-section {
   position: relative;
   background: var(--bg);
-  padding: 100px 40px;
+  padding: 100px 20px;
   z-index: 10;
 }
 
@@ -788,7 +794,7 @@ nav {
 .site-footer {
   position: relative;
   background: #0A0A0A;
-  padding: 80px 40px 40px 40px;
+  padding: 80px 20px 40px 20px;
   z-index: 10;
 }
 
@@ -938,7 +944,7 @@ nav {
 .about-section {
   position: relative;
   background: var(--bg);
-  padding: 100px 40px;
+  padding: 100px 20px;
   z-index: 10;
 }
 
@@ -1086,7 +1092,15 @@ nav {
   border: 1px solid var(--panel-border);
   border-radius: 6px;
   padding: 28px;
-  height: 551px;
+  height: auto;
+  min-height: 551px;
+}
+
+@media (max-width: 1024px) {
+  .about-skills-box {
+    height: auto;
+    min-height: 694.54px;
+  }
 }
 
 .skills-box-header {
