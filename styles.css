@@ -154,7 +154,7 @@ nav {
 .logo {
   display: flex; align-items: center; gap: 8px;
   font-family: 'JetBrains Mono', monospace;
-  font-weight: 500; font-size: 12px; letter-spacing: -0.3px; color: white;
+  font-weight: 500; font-size: 12px; letter-spacing: -0.3px; color: var(--orange);
   text-transform: uppercase;
 }
 .logo-icon {
