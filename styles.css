@@ -388,12 +388,7 @@ nav {
 
 .t-panel > div:last-child {
   flex: 1;
-  overflow-y: auto;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-}
-
-.t-panel > div:last-child::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome/Safari/Edge/Opera */
+  overflow: hidden;
 }
 
 .t-panel-header {

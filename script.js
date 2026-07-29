@@ -65,126 +65,92 @@ if (cursorEl && window.matchMedia('(min-width: 1367px)').matches) {
 
 const panelData = {
   p1: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> agent run --task refactor-auth' },
-    { cls:'info', t:'[LOAD] auth.service.ts .............' },
-    { cls:'ok',   t:'[SCAN] 847 lines analyzed' },
-    { cls:'ok',   t:'[REFACTOR] Splitting monolith...' },
-    { cls:'info', t:'[WRITE] auth.controller.ts' },
-    { cls:'info', t:'[WRITE] auth.middleware.ts' },
-    { cls:'ok',   t:'[DONE] 3 files created' },
+    { cls:'cmd',  t:'> agent run --task synthesize-ui' },
+    { cls:'info', t:'[MODEL] Claude 3.7 Sonnet (thinking)' },
+    { cls:'ok',   t:'[PROMPT] Reading 24 Figma frames' },
+    { cls:'info', t:'[PARSE] Colors, gaps & typography' },
+    { cls:'ok',   t:'[GEN] src/components/HeroCard.tsx' },
+    { cls:'ok',   t:'[GEN] src/components/Navbar.tsx' },
+    { cls:'ok',   t:'[TEST] React 19 Server Components OK' },
     { cls:'dim',  t:'──────────────────────────' },
-    { cls:'info', t:'[LOAD] user.service.ts ............' },
-    { cls:'ok',   t:'[SCAN] 1,203 lines analyzed' },
+    { cls:'ok',   t:'[DONE] Synthesized in 0.42s' },
   ]},
   p2: { type:'fade', lines:[
-    { cls:'cmd',  t:'> agent run --task db-migration' },
-    { cls:'info', t:'[CONN] Connecting to schema registry' },
-    { cls:'ok',   t:'[CONN] Registry reached' },
-    { cls:'info', t:'[DIFF] Comparing schemas...' },
-    { cls:'warn', t:'[DIFF] 14 breaking changes found' },
-    { cls:'ok',   t:'[GEN] migration_v2.41.sql' },
-    { cls:'ok',   t:'[TEST] Dry run passed' },
-    { cls:'dim',  t:'CPU: 12%  MEM: 3.2GB / 16GB' },
-    { cls:'dim',  t:'Active agents: 4  Queue: 0' },
-  ]},
-  p3: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> agent run --task generate-tests' },
-    { cls:'info', t:'[SCAN] Uncovered functions: 23' },
-    { cls:'ok',   t:'[GEN] tests/auth.test.ts (8 cases)' },
-    { cls:'ok',   t:'[GEN] tests/billing.test.ts (6 cases)' },
-    { cls:'ok',   t:'[GEN] tests/users.test.ts (9 cases)' },
-    { cls:'ok',   t:'[RUN] All 23 tests passing' },
-    { cls:'dim',  t:'Coverage: 87.3% -> 94.1%' },
+    { cls:'cmd',  t:'> npx @figma/code-connect sync' },
+    { cls:'info', t:'[AUTH] Connecting Figma REST API' },
+    { cls:'ok',   t:'[FETCH] 64 Styles & Design Tokens' },
+    { cls:'warn', t:'[WARN] 2 token overrides detected' },
+    { cls:'info', t:'[TRANSFORM] HSL -> CSS Variables' },
+    { cls:'ok',   t:'[EMIT] styles/tokens.css (1.8 KB)' },
+    { cls:'ok',   t:'[CHECK] WCAG 2.1 AAA Contrast OK' },
+    { cls:'dim',  t:'Figma -> Codebase SYNC COMPLETE' },
   ]},
   p4: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> agent run --task deploy-staging' },
-    { cls:'info', t:'[BUILD] next build .............' },
-    { cls:'ok',   t:'[BUILD] ................... OK' },
-    { cls:'ok',   t:'[LINT] 0 errors, 0 warnings' },
-    { cls:'ok',   t:'[TYPE] tsc --noEmit ........ OK' },
-    { cls:'ok',   t:'[PUSH] Image pushed to registry' },
-    { cls:'ok',   t:'[DEPLOY] staging.app.io live' },
+    { cls:'cmd',  t:'> pnpm run build --filter=portfolio' },
+    { cls:'info', t:'[TURBO] 14/14 packages cached' },
+    { cls:'ok',   t:'[NEXT] Compiling /page ... (1.2s)' },
+    { cls:'ok',   t:'[LINT] ESLint 9 + Biome 0 errors' },
+    { cls:'ok',   t:'[TSC] Strict TypeScript check OK' },
+    { cls:'ok',   t:'[VERCEL] Deploying to global edge' },
+    { cls:'ok',   t:'[LIVE] https://aruneswaran.com' },
   ]},
   p5: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> agent status --all' },
-    { cls:'info', t:'[SYS] Orchestrator: v2.4.1' },
-    { cls:'ok',   t:'[API] Anthropic Claude ......... OK' },
-    { cls:'ok',   t:'[API] OpenAI Codex ............. OK' },
-    { cls:'ok',   t:'[API] Agent Core ............... OK' },
-    { cls:'ok',   t:'[DB] PostgreSQL ............... OK' },
-    { cls:'ok',   t:'[CACHE] Redis .................. OK' },
-    { cls:'dim',  t:'Uptime: 99.97%  SLA: 99.9%' },
-  ]},
-  p6: { type:'fade', lines:[
-    { cls:'cmd',  t:'> agent run --task code-review' },
-    { cls:'info', t:'[LOAD] PR #247 -- 14 files changed' },
-    { cls:'ok',   t:'[SCAN] Security patterns ........ OK' },
-    { cls:'warn', t:'[SCAN] Performance anti-patterns: 1' },
-    { cls:'info', t:'[COMMENT] Line 847: N+1 query' },
-    { cls:'ok',   t:'[SUGGEST] Use batch loading' },
-    { cls:'dim',  t:'Review score: 94 / 100' },
+    { cls:'cmd',  t:'> systemctl status agent-cluster' },
+    { cls:'info', t:'[NODE-01] Calicut Edge ........ 12ms' },
+    { cls:'ok',   t:'[NODE-02] Tokyo Gateway ....... 48ms' },
+    { cls:'ok',   t:'[GPU] NVIDIA H100 Tensor ...... 14%' },
+    { cls:'ok',   t:'[VECTOR] Qdrant DB Index ...... OK' },
+    { cls:'ok',   t:'[REDIS] Cache Hit Ratio: 99.4%' },
+    { cls:'dim',  t:'Status: Operational (99.99%)' },
   ]},
   p7: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> agent run --task perf-optimize' },
-    { cls:'ok',   t:'[BENCH] Baseline: 342ms p95' },
-    { cls:'info', t:'[SCAN] Bundle analysis...' },
-    { cls:'warn', t:'[FOUND] 3 heavy components' },
-    { cls:'ok',   t:'[FIX] Lazy load applied' },
-    { cls:'ok',   t:'[FIX] Tree-shaking enabled' },
-    { cls:'ok',   t:'[BENCH] After: 94ms p95  down 72%' },
+    { cls:'cmd',  t:'> npx lighthouse-ci collect' },
+    { cls:'ok',   t:'[AUDIT] Performance Score: 100' },
+    { cls:'info', t:'[LCP] Contentful Paint: 420ms' },
+    { cls:'warn', t:'[WARN] 1 unused font asset flagged' },
+    { cls:'info', t:'[FID] First Input Delay: 1.2ms' },
+    { cls:'ok',   t:'[CLS] Layout Shift: 0.000' },
+    { cls:'ok',   t:'[OPTIM] WebP 100% Lossless' },
+    { cls:'ok',   t:'[BUNDLE] Initial Payload: 14.2 KB' },
   ]},
   p8: { type:'typewriter', lines:[
-    { cls:'info', t:'[18:01:04] Agent-01 started' },
-    { cls:'info', t:'[18:01:04] Agent-02 started' },
-    { cls:'info', t:'[18:01:05] Agent-03 started' },
-    { cls:'ok',   t:'[18:01:08] Agent-01 DONE' },
-    { cls:'ok',   t:'[18:01:11] Agent-03 DONE' },
-    { cls:'info', t:'[18:01:12] Agent-05 started' },
-    { cls:'ok',   t:'[18:01:15] Agent-02 DONE' },
-    { cls:'info', t:'[18:01:16] Agent-06 started' },
-    { cls:'ok',   t:'[18:01:19] Agent-04 DONE' },
-  ]},
-  p9: { type:'fade', lines:[
-    { cls:'cmd',  t:'> agent queue status' },
-    { cls:'ok',   t:'[QUEUE] Active tasks: 4 / 8 slots' },
-    { cls:'ok',   t:'[WAIT] 0 pending' },
-    { cls:'dim',  t:'[HIST] 247 tasks today' },
-    { cls:'dim',  t:'[AVG] 8.3s per task' },
-    { cls:'ok',   t:'[RATE] 0 failures (24h)' },
-    { cls:'dim',  t:'──────────────────────────' },
-    { cls:'ok',   t:'[QUOTA] 11,247 / 50,000 used' },
+    { cls:'info', t:'[15:57:01] Agent-01 prompt ingested' },
+    { cls:'info', t:'[15:57:02] Agent-02 token sync OK' },
+    { cls:'ok',   t:'[15:57:04] Agent-04 deploy triggered' },
+    { cls:'ok',   t:'[15:57:05] Agent-07 Lighthouse 100' },
+    { cls:'info', t:'[15:57:07] Agent-11 security PASS' },
+    { cls:'ok',   t:'[15:57:09] System state: STABLE' },
+    { cls:'info', t:'[15:57:10] Listening for events...' },
   ]},
   p10: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> agent run --task rollback-prod' },
-    { cls:'ok',   t:'[OK] deploy-v2.42.0 health check PASSED' },
-    { cls:'info', t:'[FETCH] Last stable: deploy-v2.41.0' },
-    { cls:'warn', t:'[DIFF] 3 commits to revert' },
-    { cls:'info', t:'[ROLLBACK] Applying v2.41.0...' },
-    { cls:'ok',   t:'[HEALTH] prod.app.io: 200 OK' },
-    { cls:'ok',   t:'[DONE] Rollback complete in 23s' },
+    { cls:'cmd',  t:'> pnpm audit --prod' },
+    { cls:'info', t:'[AUDIT] Scanning 248 node_modules' },
+    { cls:'ok',   t:'[SAST] Zero vulnerabilities' },
+    { cls:'ok',   t:'[HEADERS] HSTS & CSP enforced' },
+    { cls:'ok',   t:'[AUTH] NextAuth.js v5 JWT OK' },
+    { cls:'ok',   t:'[SANITY] Input sanitization OK' },
+    { cls:'ok',   t:'[STATUS] Security Grade: AAA+' },
   ]},
   p11: { type:'typewriter', lines:[
-    { cls:'cmd',  t:'> agent run --task update-docs' },
-    { cls:'info', t:'[SCAN] 7 undocumented exports found' },
-    { cls:'ok',   t:'[GEN] docs/api-reference.md updated' },
-    { cls:'ok',   t:'[GEN] docs/auth-guide.md created' },
-    { cls:'ok',   t:'[GEN] docs/webhooks.md created' },
-    { cls:'ok',   t:'[PUSH] Docs deployed' },
-    { cls:'dim',  t:'Pages updated: 14' },
-  ]},
-  p12: { type:'fade', lines:[
-    { cls:'cmd',  t:'> agent net status --verbose' },
-    { cls:'ok',   t:'[EDGE] us-east-1 ........... 12ms' },
-    { cls:'ok',   t:'[EDGE] eu-west-1 ........... 34ms' },
-    { cls:'ok',   t:'[EDGE] ap-southeast-1 ...... 89ms' },
-    { cls:'dim',  t:'──────────────────────────' },
-    { cls:'ok',   t:'[CDN] Cache hit rate: 94.2%' },
-    { cls:'ok',   t:'[TLS] All certs valid' },
-    { cls:'dim',  t:'Bandwidth: 2.3 TB / 24h' },
+    { cls:'cmd',  t:'> agent prototype --frame=mobile' },
+    { cls:'info', t:'[ANIM] Framer Motion 60fps spring' },
+    { cls:'ok',   t:'[INTERACT] Drag & Card swipe OK' },
+    { cls:'ok',   t:'[THEME] Dark/Light toggle tested' },
+    { cls:'ok',   t:'[STORYBOOK] 18 stories built' },
+    { cls:'ok',   t:'[PREVIEW] Interactive prototype' },
+    { cls:'dim',  t:'Figma Specs -> Code ready' },
   ]},
 };
 
 /* ── TYPEWRITER ─────────────────────────────────────── */
+function fitLines(container) {
+  if (!container) return;
+  while (container.firstElementChild && container.scrollHeight > container.clientHeight) {
+    container.firstElementChild.remove();
+  }
+  container.scrollTop = container.scrollHeight;
+}
+
 function typewriterPanel(containerId, lines) {
   const container = G(containerId);
   if (!container) return;
@@ -197,8 +163,8 @@ function typewriterPanel(containerId, lines) {
     div.className = `t-line ${cls}`;
     div.textContent = t;
     container.appendChild(div);
+    fitLines(container);
   }
-  container.scrollTop = container.scrollHeight;
 
   let li = Math.min(preCount, lines.length - 1);
 
@@ -219,17 +185,18 @@ function typewriterPanel(containerId, lines) {
     cursor.className = 't-cursor';
     div.appendChild(cursor);
     container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
+    fitLines(container);
 
     let ci = 0;
     const speed = cls === 'cmd' ? 36 : 20;
     function tick() {
       if (ci < t.length) {
         cursor.insertAdjacentText('beforebegin', t[ci++]);
-        container.scrollTop = container.scrollHeight;
+        fitLines(container);
         setTimeout(tick, speed + Math.random() * 18);
       } else {
         cursor.remove();
+        fitLines(container);
         setTimeout(nextLine, cls === 'cmd' ? 200 : 70);
       }
     }
@@ -250,19 +217,20 @@ function fadeLine(data, delay) {
 function fadePanel(containerId, lines) {
   const c = G(containerId);
   if (!c) return;
-  lines.forEach((l, i) => c.appendChild(fadeLine(l, i * 105)));
+  lines.forEach((l, i) => {
+    c.appendChild(fadeLine(l, i * 105));
+    fitLines(c);
+  });
 }
 
 function refreshFade(containerId, lines) {
   const c = G(containerId);
   if (!c) return;
-  const all = c.querySelectorAll('.t-line');
-  if (all.length >= 9) {
-    all[0].remove();
-    const el = fadeLine(lines[Math.floor(Math.random() * lines.length)], 0);
-    el.style.animationDelay = '0ms';
-    c.appendChild(el);
-  }
+  fitLines(c);
+  const el = fadeLine(lines[Math.floor(Math.random() * lines.length)], 0);
+  el.style.animationDelay = '0ms';
+  c.appendChild(el);
+  fitLines(c);
 }
 
 /* ── INIT ───────────────────────────────────────────── */
