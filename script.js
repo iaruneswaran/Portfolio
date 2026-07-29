@@ -27,9 +27,9 @@ if (loader) {
   });
 }
 
-/* ── SMOOTH CURSOR ── */
+/* ── SMOOTH CURSOR (DESKTOP ONLY) ── */
 const cursorEl = document.getElementById('custom-cursor');
-if (cursorEl) {
+if (cursorEl && window.matchMedia('(min-width: 1025px) and (hover: hover)').matches) {
   let mouseX = -100, mouseY = -100;
   let cursorX = -100, cursorY = -100;
   let isVisible = false;
