@@ -1,5 +1,84 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Hide scrollbar across all browsers */
+html, body {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / Edge */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, Opera */
+}
+
+/* Custom mouse cursor */
+*, *::before, *::after {
+  cursor: url('Assets/Mouse Pointer.svg') 0 0, auto;
+}
+
+/* ── LOADING SCREEN ───────────────────────────────── */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0A0A0A;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 40px;
+  animation: loader-fade-out 0.45s ease forwards;
+  animation-delay: 2.1s;
+}
+
+#loader-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: #FF6B00;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(0);
+  animation:
+    loader-appear 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards,
+    loader-name-exit 0.55s cubic-bezier(0.55, 0, 1, 0.45) 1.5s forwards;
+}
+
+#loader-portfolio {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: #FF6B00;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(0);
+  animation:
+    loader-appear 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.42s forwards,
+    loader-portfolio-exit 0.55s cubic-bezier(0.55, 0, 1, 0.45) 1.5s forwards;
+}
+
+@keyframes loader-appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes loader-name-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes loader-portfolio-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(20px); }
+}
+
+@keyframes loader-fade-out {
+  from { opacity: 1; pointer-events: all; }
+  to   { opacity: 0; pointer-events: none; }
+}
+
 :root {
   --orange: #FF6B00;
   --red: #FF4444;
@@ -162,7 +241,7 @@ nav {
   text-align: center;
   width: 100%;
   max-width: 320px;
-  margin-top: -95px;
+  margin-top: -115px;
 }
 
 .avatar-wrapper {

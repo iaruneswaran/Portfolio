@@ -1,5 +1,15 @@
 const G = id => document.getElementById(id);
 
+/* ── LOADER: remove from DOM after animation ends ── */
+const loader = document.getElementById('loader');
+if (loader) {
+  loader.addEventListener('animationend', (e) => {
+    if (e.animationName === 'loader-fade-out') {
+      loader.remove();
+    }
+  });
+}
+
 const panelData = {
   p1: { type:'typewriter', lines:[
     { cls:'cmd',  t:'> agent run --task refactor-auth' },
@@ -125,11 +135,27 @@ const panelData = {
 function typewriterPanel(containerId, lines) {
   const container = G(containerId);
   if (!container) return;
-  let li = 0;
+
+  // Pre-fill a random portion of lines instantly so it looks mid-execution
+  const preCount = Math.floor(lines.length * 0.55 + Math.random() * 2);
+  for (let i = 0; i < Math.min(preCount, lines.length - 1); i++) {
+    const { cls, t } = lines[i];
+    const div = document.createElement('div');
+    div.className = `t-line ${cls}`;
+    div.textContent = t;
+    container.appendChild(div);
+  }
+  container.scrollTop = container.scrollHeight;
+
+  let li = Math.min(preCount, lines.length - 1);
 
   function nextLine() {
     if (li >= lines.length) {
-      setTimeout(() => { container.innerHTML = ''; li = 0; nextLine(); }, 2800);
+      setTimeout(() => {
+        container.innerHTML = '';
+        li = 0;
+        nextLine();
+      }, 2800);
       return;
     }
     const { cls, t } = lines[li++];
