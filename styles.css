@@ -721,10 +721,23 @@ nav {
 }
 
 .project-link-secondary {
-  color: var(--text-secondary);
-}
-.project-link-secondary:hover {
   color: white;
+}
+
+.btn-arrow {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+}
+
+.project-link:hover .btn-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+  filter: invert(47%) sepia(85%) saturate(1983%) hue-rotate(1deg) brightness(102%) contrast(105%);
 }
 
 /* ── DESIGN PROJECTS PLACEHOLDER ────────────────────────── */
